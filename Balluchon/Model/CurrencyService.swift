@@ -10,11 +10,14 @@ import Foundation
 
 class CurrencyService {
     private let baseURL = URL(string: "https://api.exchangeratesapi.io/latest")!
-    private let session = URLSession(configuration: .default)
+    private var session = URLSession(configuration: .default)
     private var task: URLSessionDataTask?
-    
-    static var shared = CurrencyService()
     private init() {}
+    static var shared = CurrencyService()
+    
+    init(session: URLSession) {
+        self.session = session
+    }
     
     func getCurrency(callback: @escaping(Bool, Currency?) -> (Void)) {
         task?.cancel()

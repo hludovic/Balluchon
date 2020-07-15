@@ -5,7 +5,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -19,7 +18,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="Zzy-aZ-l7k" kind="relationship" relationship="viewControllers" id="oYS-dX-iIm"/>
+                        <segue destination="Jv4-Tl-u9S" kind="relationship" relationship="viewControllers" id="MUS-Er-L5n"/>
                         <segue destination="uPX-2L-qDI" kind="relationship" relationship="viewControllers" id="FE8-CS-NNP"/>
                         <segue destination="U2w-ow-0OS" kind="relationship" relationship="viewControllers" id="vJM-6U-UO1"/>
                     </connections>
@@ -27,27 +26,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="moF-CX-HgF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2620" y="17"/>
-        </scene>
-        <!--Devise-->
-        <scene sceneID="Jwr-yL-oQI">
-            <objects>
-                <navigationController id="Zzy-aZ-l7k" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Devise" image="arrow.2.circlepath" catalog="system" id="2To-bZ-q6A"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="KkQ-xc-6V1">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" name="#4a6d88"/>
-                        <textAttributes key="titleTextAttributes">
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </textAttributes>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="Jv4-Tl-u9S" kind="relationship" relationship="rootViewController" id="puR-Lo-a5h"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hwH-lk-JxL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1504" y="-752"/>
         </scene>
         <!--Traduction-->
         <scene sceneID="QhS-jd-ZOu">
@@ -59,12 +37,12 @@
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="OGa-eH-kbz">
                                 <rect key="frame" x="20" y="166" width="374" height="128"/>
-                                <color key="backgroundColor" name="#4a6d88"/>
+                                <color key="backgroundColor" name="#c6cdd7"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="128" id="Pbs-t8-2QW"/>
                                 </constraints>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <connections>
@@ -73,11 +51,11 @@
                             </textView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="A8B-ka-maI">
                                 <rect key="frame" x="20" y="364" width="374" height="128"/>
-                                <color key="backgroundColor" name="#4a6d88"/>
+                                <color key="backgroundColor" name="#c6cdd7"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="128" id="1wR-jc-BBM"/>
                                 </constraints>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -228,7 +206,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Yc-3Z-FMs">
-                                <rect key="frame" x="20" y="185" width="374" height="200"/>
+                                <rect key="frame" x="20" y="186" width="374" height="200"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00.00$" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ssG-XV-eHN">
                                         <rect key="frame" x="8" y="27" width="358" height="36"/>
@@ -247,7 +225,7 @@
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="mXM-ca-Ceg"/>
                                         </constraints>
-                                        <state key="normal" title="Convertir">
+                                        <state key="normal" title="Convert">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
@@ -268,24 +246,6 @@
                                     <constraint firstItem="Rfm-S4-kqx" firstAttribute="top" secondItem="ssG-XV-eHN" secondAttribute="bottom" constant="7" id="iko-hc-WDF"/>
                                 </constraints>
                             </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="wMu-1E-SeX">
-                                <rect key="frame" x="20" y="118" width="374" height="22"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Conversion Euros Dollards" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Y6-Yw-cuO">
-                                        <rect key="frame" x="0.0" y="1" width="201" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ppd-9z-eWu">
-                                        <rect key="frame" x="354" y="0.0" width="20" height="22"/>
-                                        <state key="normal" image="arrow.right.arrow.left" catalog="system"/>
-                                        <connections>
-                                            <action selector="pressSwitchButton:" destination="Jv4-Tl-u9S" eventType="touchUpInside" id="gST-et-Eb1"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                            </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="53" translatesAutoresizingMaskIntoConstraints="NO" id="eU4-a6-5CA">
                                 <rect key="frame" x="131" y="786" width="152.5" height="20"/>
                                 <subviews>
@@ -300,29 +260,76 @@
                                     </activityIndicatorView>
                                 </subviews>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Currency conversion" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ycl-Pz-GEi">
+                                <rect key="frame" x="89.5" y="64" width="235.5" height="30"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WSq-VD-iLQ">
+                                <rect key="frame" x="20" y="131" width="374" height="35"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="45" translatesAutoresizingMaskIntoConstraints="NO" id="wMu-1E-SeX">
+                                        <rect key="frame" x="79" y="6.5" width="216.5" height="22"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dollards" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U2R-h8-r15">
+                                                <rect key="frame" x="0.0" y="0.0" width="63" height="22"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ppd-9z-eWu">
+                                                <rect key="frame" x="108" y="0.0" width="20" height="22"/>
+                                                <state key="normal" image="arrow.right.arrow.left" catalog="system"/>
+                                                <connections>
+                                                    <action selector="pressSwitchButton:" destination="Jv4-Tl-u9S" eventType="touchUpInside" id="gST-et-Eb1"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Euros" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Y6-Yw-cuO">
+                                                <rect key="frame" x="173" y="0.0" width="43.5" height="22"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" name="#001e38"/>
+                                <constraints>
+                                    <constraint firstItem="wMu-1E-SeX" firstAttribute="centerY" secondItem="WSq-VD-iLQ" secondAttribute="centerY" id="xaI-kW-I10"/>
+                                    <constraint firstAttribute="height" constant="35" id="xre-e8-wi8"/>
+                                    <constraint firstItem="wMu-1E-SeX" firstAttribute="centerX" secondItem="WSq-VD-iLQ" secondAttribute="centerX" id="zhS-Mg-Ccu"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="ycl-Pz-GEi" firstAttribute="top" secondItem="b2z-5Q-1UP" secondAttribute="top" constant="20" id="D0f-wz-kTo"/>
                             <constraint firstItem="b2z-5Q-1UP" firstAttribute="trailing" secondItem="8Yc-3Z-FMs" secondAttribute="trailing" constant="20" id="GXw-Di-Xl3"/>
+                            <constraint firstItem="8Yc-3Z-FMs" firstAttribute="top" secondItem="WSq-VD-iLQ" secondAttribute="bottom" constant="20" id="KQ6-mg-hWb"/>
                             <constraint firstItem="8Yc-3Z-FMs" firstAttribute="leading" secondItem="b2z-5Q-1UP" secondAttribute="leading" constant="20" id="LLG-nc-cf5"/>
-                            <constraint firstItem="8Yc-3Z-FMs" firstAttribute="top" secondItem="wMu-1E-SeX" secondAttribute="bottom" constant="45" id="RoP-6m-KL7"/>
-                            <constraint firstItem="b2z-5Q-1UP" firstAttribute="trailing" secondItem="wMu-1E-SeX" secondAttribute="trailing" constant="20" id="bvb-4t-P3w"/>
-                            <constraint firstItem="wMu-1E-SeX" firstAttribute="top" secondItem="b2z-5Q-1UP" secondAttribute="top" constant="30" id="cEe-1e-1tw"/>
+                            <constraint firstItem="WSq-VD-iLQ" firstAttribute="leading" secondItem="b2z-5Q-1UP" secondAttribute="leading" constant="20" id="Qbf-44-1cf"/>
+                            <constraint firstItem="WSq-VD-iLQ" firstAttribute="top" secondItem="b2z-5Q-1UP" secondAttribute="top" constant="87" id="Ri1-Hk-Oyg"/>
+                            <constraint firstItem="ycl-Pz-GEi" firstAttribute="centerX" secondItem="lXR-nJ-96z" secondAttribute="centerX" id="cVd-6Q-eJP"/>
+                            <constraint firstItem="b2z-5Q-1UP" firstAttribute="trailing" secondItem="WSq-VD-iLQ" secondAttribute="trailing" constant="20" id="e63-iz-5pg"/>
                             <constraint firstItem="eU4-a6-5CA" firstAttribute="centerX" secondItem="lXR-nJ-96z" secondAttribute="centerX" id="oi7-la-0dD"/>
                             <constraint firstItem="b2z-5Q-1UP" firstAttribute="bottom" secondItem="eU4-a6-5CA" secondAttribute="bottom" constant="7" id="pWW-VK-hV7"/>
-                            <constraint firstItem="wMu-1E-SeX" firstAttribute="leading" secondItem="b2z-5Q-1UP" secondAttribute="leading" constant="20" id="tWP-1W-AWe"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="b2z-5Q-1UP"/>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="bRD-8p-AUN" appends="YES" id="ET0-Wp-Dz2"/>
                         </connections>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Currency" image="arrow.2.circlepath" catalog="system" id="HVg-yZ-YIt"/>
                     <navigationItem key="navigationItem" title="Taux de change" id="soy-Zj-9kt"/>
                     <connections>
+                        <outlet property="backgroundConvert" destination="8Yc-3Z-FMs" id="3OD-nb-33n"/>
+                        <outlet property="backgroundView" destination="WSq-VD-iLQ" id="DZB-ya-Xvl"/>
                         <outlet property="convertButton" destination="zeZ-sh-qTv" id="7Dd-mo-6bQ"/>
-                        <outlet property="eurosDollardsLabel" destination="2Y6-Yw-cuO" id="MIV-wq-kpr"/>
+                        <outlet property="destinationLabel" destination="2Y6-Yw-cuO" id="MIV-wq-kpr"/>
                         <outlet property="loadingStackView" destination="eU4-a6-5CA" id="Z5E-LO-mpJ"/>
+                        <outlet property="originLabel" destination="U2R-h8-r15" id="AGy-9j-VxN"/>
                         <outlet property="resultatLabel" destination="ssG-XV-eHN" id="fJ2-3s-0pp"/>
                         <outlet property="textField" destination="Rfm-S4-kqx" id="sG8-J9-Hfe"/>
                     </connections>
@@ -334,7 +341,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-488.40579710144931" y="-752.00892857142856"/>
+            <point key="canvasLocation" x="-1504.3478260869567" y="-765.40178571428567"/>
         </scene>
     </scenes>
     <resources>

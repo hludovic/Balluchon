@@ -10,44 +10,51 @@ import UIKit
 
 class DeviseViewController: UIViewController {
     
-    @IBOutlet weak var eurosDollardsLabel: UILabel!
+    @IBOutlet weak var destinationLabel: UILabel!
+    @IBOutlet weak var originLabel: UILabel!
     @IBOutlet weak var resultatLabel: UILabel!
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var convertButton: UIButton!
+    @IBOutlet weak var backgroundView: UIView!
+    @IBOutlet weak var backgroundConvert: UIView!
     
     @IBOutlet weak var loadingStackView: UIStackView!
     private var dollardRate: Double?
     
-    private var switchWallue: convertTo = .dollard {
+    private var mode: Mode? {
         didSet {
-            refreshTitleLabel()
+            refreshMode()
         }
     }
     
-    enum convertTo {
-        case euro, dollard
+    enum Mode {
+        case eurToDol, dolToEur
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        refreshTitleLabel()
+        mode = .dolToEur
+        backgroundView.layer.cornerRadius = 10
+        backgroundConvert.layer.cornerRadius = 10
         getCurrency()
     }
 
     @IBAction func pressSwitchButton(_ sender: UIButton) {
-        if switchWallue == .dollard {
-            switchWallue = .euro
+        if mode! == .dolToEur {
+            mode = .eurToDol
         } else {
-            switchWallue = .dollard
+            mode = .dolToEur
         }
     }
     
-    private func refreshTitleLabel() {
-        if switchWallue == .dollard {
-            eurosDollardsLabel.text = "Conversion Euros vers Dollards"
+    private func refreshMode() {
+        if mode == .dolToEur {
+            originLabel.text = "Dollards"
+            destinationLabel.text = "Euros"
             textField.placeholder = "€"
         } else {
-            eurosDollardsLabel.text = "Conversion Dollard vers Euros"
+            originLabel.text = "Euros"
+            destinationLabel.text = "Dollards"
             textField.placeholder = "$"
         }
     }
@@ -88,12 +95,10 @@ class DeviseViewController: UIViewController {
             return
         }
         
-        
-        
-        switch switchWallue {
-        case .dollard:
+        switch mode! {
+        case .dolToEur:
             resultatLabel.text = "\(dollardRate * Double(textFieldString)!)"
-        case .euro:
+        case .eurToDol:
             resultatLabel.text = "\(Double(textFieldString)! / dollardRate)"
         }
         
@@ -105,11 +110,6 @@ class DeviseViewController: UIViewController {
         
     @IBAction func convertButton(_ sender: UIButton) {
         convert()
-    }
-    
-    
-    
-    
-    
+    }    
     
 }

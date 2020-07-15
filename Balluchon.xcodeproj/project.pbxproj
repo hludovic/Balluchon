@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		43254B1824BF4CCF00284ED5 /* TranslateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43254B1724BF4CCF00284ED5 /* TranslateService.swift */; };
+		43254B2824BF4DB000284ED5 /* DeviseServiceTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43254B2724BF4DB000284ED5 /* DeviseServiceTestCase.swift */; };
+		43254B2A24BF4F1D00284ED5 /* Currency.json in Resources */ = {isa = PBXBuildFile; fileRef = 43254B2924BF4F1D00284ED5 /* Currency.json */; };
+		43254B2C24BF4F4400284ED5 /* FakeResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43254B2B24BF4F4400284ED5 /* FakeResponseData.swift */; };
+		43254B2E24BF524B00284ED5 /* FakeURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43254B2D24BF524B00284ED5 /* FakeURLSession.swift */; };
 		434AF05B24BE773900D69C7D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434AF05A24BE773900D69C7D /* AppDelegate.swift */; };
 		434AF05D24BE773900D69C7D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434AF05C24BE773900D69C7D /* SceneDelegate.swift */; };
 		434AF06224BE773900D69C7D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 434AF06024BE773900D69C7D /* Main.storyboard */; };
@@ -18,7 +23,24 @@
 		43B4C8E524BEA94D00303C08 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B4C8E424BEA94D00303C08 /* Currency.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		43254B2224BF4D6700284ED5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 434AF04F24BE773800D69C7D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 434AF05624BE773800D69C7D;
+			remoteInfo = Balluchon;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		43254B1724BF4CCF00284ED5 /* TranslateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateService.swift; sourceTree = "<group>"; };
+		43254B1D24BF4D6700284ED5 /* BalluchonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BalluchonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		43254B2124BF4D6700284ED5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		43254B2724BF4DB000284ED5 /* DeviseServiceTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviseServiceTestCase.swift; sourceTree = "<group>"; };
+		43254B2924BF4F1D00284ED5 /* Currency.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Currency.json; sourceTree = "<group>"; };
+		43254B2B24BF4F4400284ED5 /* FakeResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeResponseData.swift; sourceTree = "<group>"; };
+		43254B2D24BF524B00284ED5 /* FakeURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeURLSession.swift; sourceTree = "<group>"; };
 		434AF05724BE773800D69C7D /* Balluchon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Balluchon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		434AF05A24BE773900D69C7D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		434AF05C24BE773900D69C7D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -33,6 +55,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		43254B1A24BF4D6700284ED5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		434AF05424BE773800D69C7D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -43,10 +72,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		43254B1E24BF4D6700284ED5 /* BalluchonTests */ = {
+			isa = PBXGroup;
+			children = (
+				43254B2124BF4D6700284ED5 /* Info.plist */,
+				43254B2724BF4DB000284ED5 /* DeviseServiceTestCase.swift */,
+				43254B2924BF4F1D00284ED5 /* Currency.json */,
+				43254B2B24BF4F4400284ED5 /* FakeResponseData.swift */,
+				43254B2D24BF524B00284ED5 /* FakeURLSession.swift */,
+			);
+			path = BalluchonTests;
+			sourceTree = "<group>";
+		};
 		434AF04E24BE773800D69C7D = {
 			isa = PBXGroup;
 			children = (
 				434AF05924BE773800D69C7D /* Balluchon */,
+				43254B1E24BF4D6700284ED5 /* BalluchonTests */,
 				434AF05824BE773800D69C7D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -55,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				434AF05724BE773800D69C7D /* Balluchon.app */,
+				43254B1D24BF4D6700284ED5 /* BalluchonTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -87,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				43B4C8E124BEA53700303C08 /* CurrencyService.swift */,
+				43254B1724BF4CCF00284ED5 /* TranslateService.swift */,
 				43B4C8E424BEA94D00303C08 /* Currency.swift */,
 			);
 			path = Model;
@@ -95,6 +139,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		43254B1C24BF4D6700284ED5 /* BalluchonTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 43254B2424BF4D6700284ED5 /* Build configuration list for PBXNativeTarget "BalluchonTests" */;
+			buildPhases = (
+				43254B1924BF4D6700284ED5 /* Sources */,
+				43254B1A24BF4D6700284ED5 /* Frameworks */,
+				43254B1B24BF4D6700284ED5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				43254B2324BF4D6700284ED5 /* PBXTargetDependency */,
+			);
+			name = BalluchonTests;
+			productName = BalluchonTests;
+			productReference = 43254B1D24BF4D6700284ED5 /* BalluchonTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		434AF05624BE773800D69C7D /* Balluchon */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 434AF06B24BE773E00D69C7D /* Build configuration list for PBXNativeTarget "Balluchon" */;
@@ -122,6 +184,11 @@
 				LastUpgradeCheck = 1150;
 				ORGANIZATIONNAME = "Ludovic HENRY";
 				TargetAttributes = {
+					43254B1C24BF4D6700284ED5 = {
+						CreatedOnToolsVersion = 11.5;
+						LastSwiftMigration = 1150;
+						TestTargetID = 434AF05624BE773800D69C7D;
+					};
 					434AF05624BE773800D69C7D = {
 						CreatedOnToolsVersion = 11.5;
 					};
@@ -141,11 +208,20 @@
 			projectRoot = "";
 			targets = (
 				434AF05624BE773800D69C7D /* Balluchon */,
+				43254B1C24BF4D6700284ED5 /* BalluchonTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		43254B1B24BF4D6700284ED5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				43254B2A24BF4F1D00284ED5 /* Currency.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		434AF05524BE773800D69C7D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -159,6 +235,16 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		43254B1924BF4D6700284ED5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				43254B2824BF4DB000284ED5 /* DeviseServiceTestCase.swift in Sources */,
+				43254B2E24BF524B00284ED5 /* FakeURLSession.swift in Sources */,
+				43254B2C24BF4F4400284ED5 /* FakeResponseData.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		434AF05324BE773800D69C7D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -168,11 +254,20 @@
 				434AF05B24BE773900D69C7D /* AppDelegate.swift in Sources */,
 				434AF05D24BE773900D69C7D /* SceneDelegate.swift in Sources */,
 				434F13F724BE7948002A097A /* DeviseViewController.swift in Sources */,
+				43254B1824BF4CCF00284ED5 /* TranslateService.swift in Sources */,
 				4377662624BF2D0100573DEC /* TranslateViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		43254B2324BF4D6700284ED5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 434AF05624BE773800D69C7D /* Balluchon */;
+			targetProxy = 43254B2224BF4D6700284ED5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		434AF06024BE773900D69C7D /* Main.storyboard */ = {
@@ -194,6 +289,49 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		43254B2524BF4D6700284ED5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = W8A2PVHCN3;
+				INFOPLIST_FILE = BalluchonTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ludovichenry.BalluchonTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Balluchon.app/Balluchon";
+			};
+			name = Debug;
+		};
+		43254B2624BF4D6700284ED5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = W8A2PVHCN3;
+				INFOPLIST_FILE = BalluchonTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ludovichenry.BalluchonTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Balluchon.app/Balluchon";
+			};
+			name = Release;
+		};
 		434AF06924BE773E00D69C7D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -347,6 +485,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		43254B2424BF4D6700284ED5 /* Build configuration list for PBXNativeTarget "BalluchonTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				43254B2524BF4D6700284ED5 /* Debug */,
+				43254B2624BF4D6700284ED5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		434AF05224BE773800D69C7D /* Build configuration list for PBXProject "Balluchon" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
