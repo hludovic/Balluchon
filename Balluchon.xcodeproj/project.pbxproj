@@ -17,7 +17,8 @@
 		434AF06224BE773900D69C7D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 434AF06024BE773900D69C7D /* Main.storyboard */; };
 		434AF06424BE773E00D69C7D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 434AF06324BE773E00D69C7D /* Assets.xcassets */; };
 		434AF06724BE773E00D69C7D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 434AF06524BE773E00D69C7D /* LaunchScreen.storyboard */; };
-		434F13F724BE7948002A097A /* DeviseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F13F624BE7948002A097A /* DeviseViewController.swift */; };
+		434F13F724BE7948002A097A /* CurrencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F13F624BE7948002A097A /* CurrencyViewController.swift */; };
+		436FC57B24C08C2000E961BF /* CurrencyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436FC57A24C08C2000E961BF /* CurrencyViewModel.swift */; };
 		4377662624BF2D0100573DEC /* TranslateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4377662524BF2D0100573DEC /* TranslateViewController.swift */; };
 		437EDB9624BFFE14003A42B6 /* ApiKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437EDB9424BFFE14003A42B6 /* ApiKeys.swift */; };
 		437EDB9724BFFE14003A42B6 /* ApiKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 437EDB9524BFFE14003A42B6 /* ApiKeys.plist */; };
@@ -51,7 +52,8 @@
 		434AF06324BE773E00D69C7D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		434AF06624BE773E00D69C7D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		434AF06824BE773E00D69C7D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = "Balluchon/Supporting files/Info.plist"; sourceTree = SOURCE_ROOT; };
-		434F13F624BE7948002A097A /* DeviseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviseViewController.swift; sourceTree = "<group>"; };
+		434F13F624BE7948002A097A /* CurrencyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyViewController.swift; sourceTree = "<group>"; };
+		436FC57A24C08C2000E961BF /* CurrencyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyViewModel.swift; sourceTree = "<group>"; };
 		4377662524BF2D0100573DEC /* TranslateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateViewController.swift; sourceTree = "<group>"; };
 		437EDB9424BFFE14003A42B6 /* ApiKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiKeys.swift; sourceTree = "<group>"; };
 		437EDB9524BFFE14003A42B6 /* ApiKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ApiKeys.plist; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 		434AF05924BE773800D69C7D /* Balluchon */ = {
 			isa = PBXGroup;
 			children = (
+				436FC57924C08AC900E961BF /* ViewModel */,
 				4377662424BF2CC100573DEC /* Controller */,
 				43B4C8E324BEA7C000303C08 /* Model */,
 				437EDB8F24BFF877003A42B6 /* View */,
@@ -119,10 +122,18 @@
 			path = Balluchon;
 			sourceTree = "<group>";
 		};
+		436FC57924C08AC900E961BF /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				436FC57A24C08C2000E961BF /* CurrencyViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		4377662424BF2CC100573DEC /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				434F13F624BE7948002A097A /* DeviseViewController.swift */,
+				434F13F624BE7948002A097A /* CurrencyViewController.swift */,
 				4377662524BF2D0100573DEC /* TranslateViewController.swift */,
 			);
 			path = Controller;
@@ -276,11 +287,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				43B4C8E224BEA53700303C08 /* CurrencyService.swift in Sources */,
+				436FC57B24C08C2000E961BF /* CurrencyViewModel.swift in Sources */,
 				43B4C8E524BEA94D00303C08 /* Currency.swift in Sources */,
 				434AF05B24BE773900D69C7D /* AppDelegate.swift in Sources */,
 				434AF05D24BE773900D69C7D /* SceneDelegate.swift in Sources */,
 				43CAA49124C0068900221922 /* Translation.swift in Sources */,
-				434F13F724BE7948002A097A /* DeviseViewController.swift in Sources */,
+				434F13F724BE7948002A097A /* CurrencyViewController.swift in Sources */,
 				43254B1824BF4CCF00284ED5 /* TranslateService.swift in Sources */,
 				437EDB9624BFFE14003A42B6 /* ApiKeys.swift in Sources */,
 				4377662624BF2D0100573DEC /* TranslateViewController.swift in Sources */,

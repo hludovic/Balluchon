@@ -200,7 +200,7 @@
         <!--Taux de change-->
         <scene sceneID="zaE-Xz-pJh">
             <objects>
-                <viewController id="Jv4-Tl-u9S" customClass="DeviseViewController" customModule="Balluchon" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Jv4-Tl-u9S" customClass="CurrencyViewController" customModule="Balluchon" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lXR-nJ-96z">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -8,6 +8,10 @@
 
 import Foundation
 
+enum CurrencyMode {
+    case eurToDol, dolToEur
+}
+
 struct Currency: Codable {
     var rates: Rates
     var base: String
