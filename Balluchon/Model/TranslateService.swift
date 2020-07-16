@@ -9,5 +9,6 @@
 import Foundation
 
 class TranslateService {
-    // Code
+    static let KeyMaClef = valueForAPIKey(named:"ApiGoogleTtranslate")
+
 }

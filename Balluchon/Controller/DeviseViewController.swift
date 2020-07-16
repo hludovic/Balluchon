@@ -37,6 +37,8 @@ class DeviseViewController: UIViewController {
         backgroundView.layer.cornerRadius = 10
         backgroundConvert.layer.cornerRadius = 10
         getCurrency()
+        
+        print(TranslateService.KeyMaClef)
     }
 
     @IBAction func pressSwitchButton(_ sender: UIButton) {
