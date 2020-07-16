@@ -8,6 +8,9 @@
 
 import Foundation
 
+enum TranslateMode {
+    case enToFr, frToEn
+}
 
 struct ResultTranslation: Codable {
     struct DataResult: Codable {

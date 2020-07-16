@@ -19,18 +19,16 @@ class TranslateViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var originLabel: UILabel!
     @IBOutlet weak var destinationLabel: UILabel!
     
-    private var mode: Mode? {
+    private var mode: TranslateMode? {
         didSet {
             refreshMode()
         }
     }
-    enum Mode {
-        case enToFr, frToEn
-    }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        mode = .frToEn
+        mode = .enToFr
         backgroundView.layer.cornerRadius = 10
         textField.layer.cornerRadius = 10
         translateButton.layer.cornerRadius = 10
@@ -68,13 +66,33 @@ class TranslateViewController: UIViewController, UITextViewDelegate {
     }
     
     @IBAction func translateButton(_ sender: UIButton) {
-        let ts = TranslateService()
-        ts.translateText { (success, data) -> (Void) in
-            if success, let data = data {
-                
-                print(data.data.translations[0].translatedText)
-            }
+        let translateService = TranslateService.shared
+        
+        guard let text = textField.text, let mode = mode, text != "" else {
+            print("ERROR")
+            return
         }
+        
+        let from: String
+        let to: String
+        if mode == .enToFr {
+            from = "en"
+            to = "fr"
+        } else {
+            from = "fr"
+            to = "en"
+        }
+        
+        translateService.translate(from: from, to: to, text: text) { (success, result) -> (Void) in
+            guard success, let result = result else {
+                print("ERROR")
+                return
+            }
+            print("-------------FIN")
+            self.textFieldResult.text = result.data.translations[0].translatedText
+            
+        }
+        
     }
     @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
         textField.resignFirstResponder()

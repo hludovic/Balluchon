@@ -14,7 +14,7 @@ protocol CurrencyDisplayDelegate: AnyObject {
     func displayActivity(_ activity: Bool)
 }
 
-class CurrencyViewModel {
+class CurrencyController {
     
     weak var displayDelegate: CurrencyDisplayDelegate?
     private var currencyService: CurrencyService?

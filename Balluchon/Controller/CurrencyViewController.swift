@@ -22,7 +22,7 @@ class CurrencyViewController: UIViewController, CurrencyDisplayDelegate {
     }
     
     
-    let currencyViewModel = CurrencyViewModel()
+    let currencyViewModel = CurrencyController()
     
     func displayResult(_ text: String) {
         resultatLabel.text = text
