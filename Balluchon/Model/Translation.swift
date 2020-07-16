@@ -12,6 +12,11 @@ enum TranslateMode {
     case enToFr, frToEn
 }
 
+enum Language: String {
+    case en = "en", fr = "fr"
+}
+
+
 struct ResultTranslation: Codable {
     struct DataResult: Codable {
 

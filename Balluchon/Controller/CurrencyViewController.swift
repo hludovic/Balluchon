@@ -9,29 +9,6 @@
 import UIKit
 
 class CurrencyViewController: UIViewController, CurrencyDisplayDelegate {
-    func displayActivity(_ activity: Bool) {
-        if activity {
-            convertButton.isEnabled = false
-            textField.isEnabled = false
-            loadingStackView.isHidden = false
-        } else {
-            convertButton.isEnabled = true
-            textField.isEnabled = true
-            loadingStackView.isHidden = true
-        }
-    }
-    
-    
-    let currencyViewModel = CurrencyController()
-    
-    func displayResult(_ text: String) {
-        resultatLabel.text = text
-    }
-    
-    func displayError(_ text: String) {
-        //
-    }
-    
     
     @IBOutlet weak var destinationLabel: UILabel!
     @IBOutlet weak var originLabel: UILabel!
@@ -41,6 +18,17 @@ class CurrencyViewController: UIViewController, CurrencyDisplayDelegate {
     @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var backgroundConvert: UIView!
     @IBOutlet weak var loadingStackView: UIStackView!
+
+    let currencyController = CurrencyController()
+    
+    func displayResult(_ text: String) {
+        resultatLabel.text = text
+    }
+    
+    func displayError(_ text: String) {
+        displayAlert(message: text)
+    }
+
     
     private var mode: CurrencyMode? {
         didSet {
@@ -58,11 +46,30 @@ class CurrencyViewController: UIViewController, CurrencyDisplayDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        currencyViewModel.displayDelegate = self
+        currencyController.displayDelegate = self
         mode = .dolToEur
         backgroundView.layer.cornerRadius = 10
         backgroundConvert.layer.cornerRadius = 10
-        currencyViewModel.fechingData()
+        currencyController.fechingData()
+    }
+
+    func displayAlert(message: String) {
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func displayActivity(_ activity: Bool) {
+        if activity {
+            convertButton.isEnabled = false
+            textField.isEnabled = false
+            loadingStackView.isHidden = false
+        } else {
+            convertButton.isEnabled = true
+            textField.isEnabled = true
+            loadingStackView.isHidden = true
+        }
     }
     
     @IBAction func pressSwitchButton(_ sender: UIButton) {
@@ -78,7 +85,7 @@ class CurrencyViewController: UIViewController, CurrencyDisplayDelegate {
     }
         
     @IBAction func convertButton(_ sender: UIButton) {
-        currencyViewModel.convertValue(mode: mode!, value: textField.text!)
+        currencyController.convertValue(mode: mode!, value: textField.text!)
     }    
     
 }

@@ -9,6 +9,9 @@
 import Foundation
 
 class CurrencyService {
+    // --- API KEY ---
+    private let apiKey = valueForAPIKey(named:"ApiFixer")
+    // --- --- --- ---
     private let baseURL = URL(string: "https://api.exchangeratesapi.io/latest")!
     private var session = URLSession(configuration: .default)
     private var task: URLSessionDataTask?

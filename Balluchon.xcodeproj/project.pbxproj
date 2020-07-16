@@ -12,6 +12,8 @@
 		43254B2A24BF4F1D00284ED5 /* Currency.json in Resources */ = {isa = PBXBuildFile; fileRef = 43254B2924BF4F1D00284ED5 /* Currency.json */; };
 		43254B2C24BF4F4400284ED5 /* FakeResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43254B2B24BF4F4400284ED5 /* FakeResponseData.swift */; };
 		43254B2E24BF524B00284ED5 /* FakeURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43254B2D24BF524B00284ED5 /* FakeURLSession.swift */; };
+		4325EC6824C0FA7F00369F95 /* TranslationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4325EC6724C0FA7F00369F95 /* TranslationController.swift */; };
+		4325EC6A24C108C300369F95 /* Translation.json in Resources */ = {isa = PBXBuildFile; fileRef = 4325EC6924C108C300369F95 /* Translation.json */; };
 		434AF05B24BE773900D69C7D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434AF05A24BE773900D69C7D /* AppDelegate.swift */; };
 		434AF05D24BE773900D69C7D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434AF05C24BE773900D69C7D /* SceneDelegate.swift */; };
 		434AF06224BE773900D69C7D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 434AF06024BE773900D69C7D /* Main.storyboard */; };
@@ -45,6 +47,8 @@
 		43254B2924BF4F1D00284ED5 /* Currency.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Currency.json; sourceTree = "<group>"; };
 		43254B2B24BF4F4400284ED5 /* FakeResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeResponseData.swift; sourceTree = "<group>"; };
 		43254B2D24BF524B00284ED5 /* FakeURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeURLSession.swift; sourceTree = "<group>"; };
+		4325EC6724C0FA7F00369F95 /* TranslationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationController.swift; sourceTree = "<group>"; };
+		4325EC6924C108C300369F95 /* Translation.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Translation.json; sourceTree = "<group>"; };
 		434AF05724BE773800D69C7D /* Balluchon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Balluchon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		434AF05A24BE773900D69C7D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		434AF05C24BE773900D69C7D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -85,9 +89,10 @@
 			children = (
 				43254B2124BF4D6700284ED5 /* Info.plist */,
 				43254B2724BF4DB000284ED5 /* DeviseServiceTestCase.swift */,
-				43254B2924BF4F1D00284ED5 /* Currency.json */,
 				43254B2B24BF4F4400284ED5 /* FakeResponseData.swift */,
 				43254B2D24BF524B00284ED5 /* FakeURLSession.swift */,
+				43254B2924BF4F1D00284ED5 /* Currency.json */,
+				4325EC6924C108C300369F95 /* Translation.json */,
 			);
 			path = BalluchonTests;
 			sourceTree = "<group>";
@@ -124,8 +129,9 @@
 		4377662424BF2CC100573DEC /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				434F13F624BE7948002A097A /* CurrencyViewController.swift */,
 				436FC57A24C08C2000E961BF /* CurrencyController.swift */,
+				4325EC6724C0FA7F00369F95 /* TranslationController.swift */,
+				434F13F624BE7948002A097A /* CurrencyViewController.swift */,
 				4377662524BF2D0100573DEC /* TranslateViewController.swift */,
 			);
 			path = Controller;
@@ -247,6 +253,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				43254B2A24BF4F1D00284ED5 /* Currency.json in Resources */,
+				4325EC6A24C108C300369F95 /* Translation.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,6 +289,7 @@
 				436FC57B24C08C2000E961BF /* CurrencyController.swift in Sources */,
 				43B4C8E524BEA94D00303C08 /* Currency.swift in Sources */,
 				434AF05B24BE773900D69C7D /* AppDelegate.swift in Sources */,
+				4325EC6824C0FA7F00369F95 /* TranslationController.swift in Sources */,
 				434AF05D24BE773900D69C7D /* SceneDelegate.swift in Sources */,
 				43CAA49124C0068900221922 /* Translation.swift in Sources */,
 				434F13F724BE7948002A097A /* CurrencyViewController.swift in Sources */,

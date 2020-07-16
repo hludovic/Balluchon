@@ -8,9 +8,9 @@
 
 import UIKit
 
-class TranslateViewController: UIViewController, UITextViewDelegate {
+class TranslateViewController: UIViewController, UITextViewDelegate, TranslationDisplayDelegate {
     
-
+    
     @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var textField: UITextView!
     @IBOutlet weak var translateButton: UIButton!
@@ -19,38 +19,73 @@ class TranslateViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var originLabel: UILabel!
     @IBOutlet weak var destinationLabel: UILabel!
     
+    let translationController = TranslationController()
+    
+    private var from: Language?
+    private var to: Language?
+    
     private var mode: TranslateMode? {
         didSet {
-            refreshMode()
+            if mode == .enToFr {
+                from = .en
+                to = .fr
+                originLabel.text = "English"
+                destinationLabel.text = "French"
+                textField.text = "Enter your text here"
+            } else {
+                from = .fr
+                to = .en
+                originLabel.text = "French"
+                destinationLabel.text = "English"
+                textField.text = "Entrez votre texte ici"
+            }
         }
     }
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        translationController.displayDelegate = self
         mode = .enToFr
         backgroundView.layer.cornerRadius = 10
         textField.layer.cornerRadius = 10
         translateButton.layer.cornerRadius = 10
         textFieldResult.layer.cornerRadius = 10
         activityIndicator.stopAnimating()
-        
-        
-        // Do any additional setup after loading the view.
     }
     
-    private func refreshMode() {
-        if let mode = mode {
-            if mode == .enToFr {
-                originLabel.text = "English"
-                destinationLabel.text = "French"
-                textField.text = "Enter your text here"
-            } else {
-                originLabel.text = "French"
-                destinationLabel.text = "English"
-                textField.text = "Entrez votre texte ici"
-            }
+    func displayResult(_ text: String) {
+        textFieldResult.text = text
+    }
+    
+    func displayError(_ text: String) {
+        displayAlert(text: text)
+    }
+    
+    func displayActivity(_ activity: Bool) {
+        if activity {
+            activityIndicator.startAnimating()
+            translateButton.isHidden = true
+        } else {
+            activityIndicator.stopAnimating()
+            translateButton.isHidden = false
         }
+    }
+    
+    func displayAlert(text: String) {
+        let alert = UIAlertController(title: "Error", message: text, preferredStyle: .alert)
+        let action = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    @IBAction func translateButton(_ sender: UIButton) {
+        
+        guard let from = from, let to = to, let text = textField.text else {
+            displayAlert(text: "ERROR")
+            return
+        }
+        
+        translationController.translateText(from: from, to: to, text: text)
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
@@ -64,36 +99,7 @@ class TranslateViewController: UIViewController, UITextViewDelegate {
             mode! = .enToFr
         }
     }
-    
-    @IBAction func translateButton(_ sender: UIButton) {
-        let translateService = TranslateService.shared
-        
-        guard let text = textField.text, let mode = mode, text != "" else {
-            print("ERROR")
-            return
-        }
-        
-        let from: String
-        let to: String
-        if mode == .enToFr {
-            from = "en"
-            to = "fr"
-        } else {
-            from = "fr"
-            to = "en"
-        }
-        
-        translateService.translate(from: from, to: to, text: text) { (success, result) -> (Void) in
-            guard success, let result = result else {
-                print("ERROR")
-                return
-            }
-            print("-------------FIN")
-            self.textFieldResult.text = result.data.translations[0].translatedText
-            
-        }
-        
-    }
+
     @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
         textField.resignFirstResponder()
     }
