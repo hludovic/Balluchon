@@ -23,6 +23,7 @@
 		437EDB9724BFFE14003A42B6 /* ApiKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 437EDB9524BFFE14003A42B6 /* ApiKeys.plist */; };
 		43B4C8E224BEA53700303C08 /* CurrencyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B4C8E124BEA53700303C08 /* CurrencyService.swift */; };
 		43B4C8E524BEA94D00303C08 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B4C8E424BEA94D00303C08 /* Currency.swift */; };
+		43CAA49124C0068900221922 /* Translation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CAA49024C0068900221922 /* Translation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 		437EDB9524BFFE14003A42B6 /* ApiKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ApiKeys.plist; sourceTree = "<group>"; };
 		43B4C8E124BEA53700303C08 /* CurrencyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyService.swift; sourceTree = "<group>"; };
 		43B4C8E424BEA94D00303C08 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
+		43CAA49024C0068900221922 /* Translation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Translation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +156,7 @@
 				43B4C8E124BEA53700303C08 /* CurrencyService.swift */,
 				43254B1724BF4CCF00284ED5 /* TranslateService.swift */,
 				43B4C8E424BEA94D00303C08 /* Currency.swift */,
+				43CAA49024C0068900221922 /* Translation.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -276,6 +279,7 @@
 				43B4C8E524BEA94D00303C08 /* Currency.swift in Sources */,
 				434AF05B24BE773900D69C7D /* AppDelegate.swift in Sources */,
 				434AF05D24BE773900D69C7D /* SceneDelegate.swift in Sources */,
+				43CAA49124C0068900221922 /* Translation.swift in Sources */,
 				434F13F724BE7948002A097A /* DeviseViewController.swift in Sources */,
 				43254B1824BF4CCF00284ED5 /* TranslateService.swift in Sources */,
 				437EDB9624BFFE14003A42B6 /* ApiKeys.swift in Sources */,

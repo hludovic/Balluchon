@@ -68,9 +68,13 @@ class TranslateViewController: UIViewController, UITextViewDelegate {
     }
     
     @IBAction func translateButton(_ sender: UIButton) {
-        activityIndicator.startAnimating()
-        translateButton.isHidden = true
-        textField.isEditable = false
+        let ts = TranslateService()
+        ts.translateText { (success, data) -> (Void) in
+            if success, let data = data {
+                
+                print(data.data.translations[0].translatedText)
+            }
+        }
     }
     @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
         textField.resignFirstResponder()
