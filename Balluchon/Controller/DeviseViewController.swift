@@ -27,6 +27,7 @@ class DeviseViewController: UIViewController {
         }
     }
     
+    
     enum Mode {
         case eurToDol, dolToEur
     }

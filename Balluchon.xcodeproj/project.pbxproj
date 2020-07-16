@@ -19,8 +19,8 @@
 		434AF06724BE773E00D69C7D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 434AF06524BE773E00D69C7D /* LaunchScreen.storyboard */; };
 		434F13F724BE7948002A097A /* DeviseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F13F624BE7948002A097A /* DeviseViewController.swift */; };
 		4377662624BF2D0100573DEC /* TranslateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4377662524BF2D0100573DEC /* TranslateViewController.swift */; };
-		437EDB9124BFF8E2003A42B6 /* ApiKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 437EDB9024BFF8E2003A42B6 /* ApiKeys.plist */; };
-		437EDB9324BFF9B2003A42B6 /* ApiKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437EDB9224BFF9B2003A42B6 /* ApiKeys.swift */; };
+		437EDB9624BFFE14003A42B6 /* ApiKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437EDB9424BFFE14003A42B6 /* ApiKeys.swift */; };
+		437EDB9724BFFE14003A42B6 /* ApiKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 437EDB9524BFFE14003A42B6 /* ApiKeys.plist */; };
 		43B4C8E224BEA53700303C08 /* CurrencyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B4C8E124BEA53700303C08 /* CurrencyService.swift */; };
 		43B4C8E524BEA94D00303C08 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B4C8E424BEA94D00303C08 /* Currency.swift */; };
 /* End PBXBuildFile section */
@@ -52,8 +52,8 @@
 		434AF06824BE773E00D69C7D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = "Balluchon/Supporting files/Info.plist"; sourceTree = SOURCE_ROOT; };
 		434F13F624BE7948002A097A /* DeviseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviseViewController.swift; sourceTree = "<group>"; };
 		4377662524BF2D0100573DEC /* TranslateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateViewController.swift; sourceTree = "<group>"; };
-		437EDB9024BFF8E2003A42B6 /* ApiKeys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ApiKeys.plist; sourceTree = "<group>"; };
-		437EDB9224BFF9B2003A42B6 /* ApiKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiKeys.swift; sourceTree = "<group>"; };
+		437EDB9424BFFE14003A42B6 /* ApiKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiKeys.swift; sourceTree = "<group>"; };
+		437EDB9524BFFE14003A42B6 /* ApiKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ApiKeys.plist; sourceTree = "<group>"; };
 		43B4C8E124BEA53700303C08 /* CurrencyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyService.swift; sourceTree = "<group>"; };
 		43B4C8E424BEA94D00303C08 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -133,9 +133,9 @@
 				434AF05A24BE773900D69C7D /* AppDelegate.swift */,
 				434AF06324BE773E00D69C7D /* Assets.xcassets */,
 				434AF06524BE773E00D69C7D /* LaunchScreen.storyboard */,
+				437EDB9524BFFE14003A42B6 /* ApiKeys.plist */,
+				437EDB9424BFFE14003A42B6 /* ApiKeys.swift */,
 				434AF06824BE773E00D69C7D /* Info.plist */,
-				437EDB9024BFF8E2003A42B6 /* ApiKeys.plist */,
-				437EDB9224BFF9B2003A42B6 /* ApiKeys.swift */,
 			);
 			path = "Supporting files";
 			sourceTree = "<group>";
@@ -249,7 +249,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				434AF06724BE773E00D69C7D /* LaunchScreen.storyboard in Resources */,
-				437EDB9124BFF8E2003A42B6 /* ApiKeys.plist in Resources */,
+				437EDB9724BFFE14003A42B6 /* ApiKeys.plist in Resources */,
 				434AF06424BE773E00D69C7D /* Assets.xcassets in Resources */,
 				434AF06224BE773900D69C7D /* Main.storyboard in Resources */,
 			);
@@ -278,7 +278,7 @@
 				434AF05D24BE773900D69C7D /* SceneDelegate.swift in Sources */,
 				434F13F724BE7948002A097A /* DeviseViewController.swift in Sources */,
 				43254B1824BF4CCF00284ED5 /* TranslateService.swift in Sources */,
-				437EDB9324BFF9B2003A42B6 /* ApiKeys.swift in Sources */,
+				437EDB9624BFFE14003A42B6 /* ApiKeys.swift in Sources */,
 				4377662624BF2D0100573DEC /* TranslateViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
