@@ -69,13 +69,23 @@ class CurrencyController {
         
         switch mode {
         case .dolToEur:
-            resultMessage = "\(rate * valueDouble) €"
+            resultMessage = "\(formatResult(valueDouble / rate)) €"
         case .eurToDol:
-            resultMessage = "\(valueDouble / rate) $"
+            resultMessage = "\(formatResult(rate * valueDouble)) $"
         }
-        
-        
-        
     }
+    
+    /// This method roun a Double value to 3 number of decimal places, and returns the result as String.
+    /// - Parameter result: The Double property that needs to be rounded.
+    private func formatResult(_ result: Double) -> String {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        numberFormatter.minimumFractionDigits = 0
+        numberFormatter.maximumFractionDigits = 3
+        if let numberFormatted = numberFormatter.string(from: NSNumber(value: result)) {
+            return numberFormatted
+        } else { return "" }
+    }
+
     
 }

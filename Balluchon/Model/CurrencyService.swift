@@ -37,7 +37,6 @@ class CurrencyService {
                     callback(false, nil)
                     return
                 }
-                
                 callback(true, responseJSON)
             }
         })
