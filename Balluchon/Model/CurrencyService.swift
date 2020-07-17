@@ -12,20 +12,18 @@ class CurrencyService {
     // --- API KEY ---
     private let apiKey = valueForAPIKey(named:"ApiFixer")
     // --- --- --- ---
-    private let baseURL = URL(string: "https://api.exchangeratesapi.io/latest")!
     private var session = URLSession(configuration: .default)
     private var task: URLSessionDataTask?
     private init() {}
     static var shared = CurrencyService()
-    
     init(session: URLSession) {
         self.session = session
     }
     
     func getCurrency(callback: @escaping(Bool, Currency?) -> (Void)) {
+        let baseURL = URL(string: "http://data.fixer.io/api/latest?access_key=\(apiKey)")!
         task?.cancel()
         task = session.dataTask(with: baseURL, completionHandler: { (data, response, error) in
-            
             DispatchQueue.main.async {
                 guard let data = data, error == nil else {
                     callback(false, nil)
@@ -43,6 +41,7 @@ class CurrencyService {
                 callback(true, responseJSON)
             }
         })
+        
         task?.resume()
     }
 }

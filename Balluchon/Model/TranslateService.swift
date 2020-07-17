@@ -20,11 +20,12 @@ class TranslateService {
     init(session: URLSession) {
         self.session = session
     }
+    
     func translate(from: Language, to: Language, text: String, callback: @escaping (Bool, ResultTranslation?) -> (Void)) {
-        task?.cancel()
         var request = URLRequest(url: baseURL)
         request.httpMethod = "POST"
         request.httpBody = "key=\(apiKey)&source=\(from.rawValue)&q=\(text)&target=\(to.rawValue)&\(from)&source&format=text".data(using: .utf8)
+        task?.cancel()
         task = session.dataTask(with: request) { (data, response, error) in
             
             DispatchQueue.main.async {

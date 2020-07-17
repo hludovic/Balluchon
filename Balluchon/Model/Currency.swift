@@ -13,9 +13,11 @@ enum CurrencyMode {
 }
 
 struct Currency: Codable {
-    var rates: Rates
+    var success: Bool
+    var timestamp: Int
     var base: String
     var date: String
+    var rates: Rates
 }
 
 struct Rates: Codable {
