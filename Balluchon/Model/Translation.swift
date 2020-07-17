@@ -19,19 +19,13 @@ enum Language: String {
 
 struct ResultTranslation: Codable {
     struct DataResult: Codable {
-
         struct Translation: Codable {
             var translatedText: String
-            var detectedSourceLanguage: String
         }
         let translations: [Translation]
-        
     }
-    
     let data: DataResult
 }
-
-
 
 
 

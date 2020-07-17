@@ -9,7 +9,7 @@
 import XCTest
 @testable import Balluchon
 
-class DeviseServiceTestCase: XCTestCase {
+class CurrencyServiceTestCase: XCTestCase {
     func testCurrencyServiceShouldReturnCallbackErrorIfNoData() {
         // Given
         let session = FakeURLSession(data: nil, response: nil, error: nil)

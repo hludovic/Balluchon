@@ -12,17 +12,20 @@ class TranslateService {
     // --- API KEY ---
     private let apiKey = valueForAPIKey(named:"ApiGoogleTtranslate")
     // --- --- --- ---
-    let baseURL = URL(string: "https://translation.googleapis.com/language/translate/v2")!
-    let session = URLSession(configuration: .default)
-    
+    private let baseURL = URL(string: "https://translation.googleapis.com/language/translate/v2")!
+    private var session = URLSession(configuration: .default)
+    private var task: URLSessionDataTask?
     static var shared = TranslateService()
     private init() {}
-        
+    init(session: URLSession) {
+        self.session = session
+    }
     func translate(from: Language, to: Language, text: String, callback: @escaping (Bool, ResultTranslation?) -> (Void)) {
+        task?.cancel()
         var request = URLRequest(url: baseURL)
         request.httpMethod = "POST"
         request.httpBody = "key=\(apiKey)&source=\(from.rawValue)&q=\(text)&target=\(to.rawValue)&\(from)&source&format=text".data(using: .utf8)
-        let task = session.dataTask(with: request) { (data, response, error) in
+        task = session.dataTask(with: request) { (data, response, error) in
             
             DispatchQueue.main.async {
                 guard let data = data, error == nil else {
@@ -34,7 +37,7 @@ class TranslateService {
                     callback(false, nil)
                     return
                 }
-                                
+                
                 guard let responseJSON = try? JSONDecoder().decode(ResultTranslation.self, from: data) else {
                     callback(false, nil)
                     return
@@ -42,9 +45,8 @@ class TranslateService {
                 callback(true, responseJSON)
             }
             
-            
         }
-        task.resume()
+        task?.resume()
     }
     
 

@@ -29,7 +29,6 @@ class CurrencyViewController: UIViewController, CurrencyDisplayDelegate {
         displayAlert(message: text)
     }
 
-    
     private var mode: CurrencyMode? {
         didSet {
             if mode == .dolToEur {
@@ -46,13 +45,19 @@ class CurrencyViewController: UIViewController, CurrencyDisplayDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         currencyController.displayDelegate = self
         mode = .dolToEur
         backgroundView.layer.cornerRadius = 10
         backgroundConvert.layer.cornerRadius = 10
+        backgroundConvert.layer.shadowColor = UIColor.black.cgColor
+        backgroundConvert.layer.shadowOffset = .zero
+        backgroundConvert.layer.shadowRadius = 3
+        backgroundConvert.layer.shadowOpacity = 0.5
+        convertButton.layer.cornerRadius = 10
         currencyController.fechingData()
     }
-
+    
     func displayAlert(message: String) {
         let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
         let action = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
@@ -85,7 +90,7 @@ class CurrencyViewController: UIViewController, CurrencyDisplayDelegate {
     }
         
     @IBAction func convertButton(_ sender: UIButton) {
-        currencyController.convertValue(mode: mode!, value: textField.text!)
+        currencyController.convertValue(mode: mode, value: textField.text)
     }    
     
 }

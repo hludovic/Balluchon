@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TranslateViewController: UIViewController, UITextViewDelegate, TranslationDisplayDelegate {
+class TranslationViewController: UIViewController, UITextViewDelegate, TranslationDisplayDelegate {
     
     
     @IBOutlet weak var backgroundView: UIView!
@@ -80,12 +80,8 @@ class TranslateViewController: UIViewController, UITextViewDelegate, Translation
     
     @IBAction func translateButton(_ sender: UIButton) {
         
-        guard let from = from, let to = to, let text = textField.text else {
-            displayAlert(text: "ERROR")
-            return
-        }
-        
-        translationController.translateText(from: from, to: to, text: text)
+        textField.resignFirstResponder()
+        translationController.translateText(from: from, to: to, text: textField.text)
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {

@@ -30,7 +30,7 @@
         <!--Traduction-->
         <scene sceneID="QhS-jd-ZOu">
             <objects>
-                <viewController id="uPX-2L-qDI" customClass="TranslateViewController" customModule="Balluchon" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="uPX-2L-qDI" customClass="TranslationViewController" customModule="Balluchon" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7zO-J9-amx">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

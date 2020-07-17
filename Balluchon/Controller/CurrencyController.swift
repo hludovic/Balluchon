@@ -17,58 +17,61 @@ protocol CurrencyDisplayDelegate: AnyObject {
 class CurrencyController {
     
     weak var displayDelegate: CurrencyDisplayDelegate?
-    private var currencyService: CurrencyService?
     private var rate: Double?
-    
-    var activity: Bool = false {
-        didSet {
-            displayDelegate?.displayActivity(activity)
-        }
-    }
-    
-    var resultDisplay: String? {
-        didSet {
-            displayDelegate?.displayResult(resultDisplay!)
-        }
-    }
-    
-    var errorDisplay: String? {
-        didSet {
-            displayDelegate?.displayError(errorDisplay!)
-        }
-    }
-    
+        
     func fechingData() {
-        activity = true
+        displayDelegate?.displayActivity(true)
         CurrencyService.shared.getCurrency { (success, currency) -> (Void) in
             guard success, let currency = currency else {
-                self.errorDisplay = "ERROR"
+                self.displayDelegate?.displayError("The data could not be downloaded")
                 return
             }
             
             self.rate = currency.rates.USD
-            self.activity = false
+            self.displayDelegate?.displayActivity(false)
+        }
+    }
+    
+    private(set) var errorMessage: String? {
+        didSet {
+            displayDelegate?.displayError(errorMessage!)
+        }
+    }
+    
+    private(set) var resultMessage: String? {
+        didSet {
+            displayDelegate?.displayResult(resultMessage!)
         }
     }
             
     
-    func convertValue(mode: CurrencyMode, value: String) {
+    func convertValue(mode: CurrencyMode?, value: String?) {
         
-        guard let value = Double(value) else {
-            errorDisplay = "ERROR"
+        guard let mode = mode else {
+            errorMessage = "The mode of translation has not been indicated."
+            return
+        }
+        
+        guard let value = value else {
+            errorMessage = "We haven't received the number to convert."
+            return
+        }
+        
+        guard let valueDouble = Double(value) else {
+            errorMessage = "You didn't enter a number"
             return
         }
         
         guard let rate = rate else {
-            errorDisplay = "ERROR"
+            errorMessage = "The rate could not be found"
             return
         }
         
         switch mode {
         case .dolToEur:
-            resultDisplay = "\(rate * value) €"
+            resultMessage = "\(rate * valueDouble) €"
         case .eurToDol:
-            resultDisplay = "\(value / rate) $"
+            resultMessage = "\(valueDouble / rate) $"
         }
         
         
