@@ -40,7 +40,6 @@ class CurrencyService {
                 callback(true, responseJSON)
             }
         })
-        
         task?.resume()
     }
 }

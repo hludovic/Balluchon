@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CurrencyViewController: UIViewController, CurrencyDisplayDelegate {
+class CurrencyViewController: UIViewController, ConverterDelegate {
     
     @IBOutlet weak var destinationLabel: UILabel!
     @IBOutlet weak var originLabel: UILabel!
@@ -19,7 +19,7 @@ class CurrencyViewController: UIViewController, CurrencyDisplayDelegate {
     @IBOutlet weak var backgroundConvert: UIView!
     @IBOutlet weak var loadingStackView: UIStackView!
 
-    let currencyController = CurrencyController()
+    private let converter = Converter()
     
     func displayResult(_ text: String) {
         resultatLabel.text = text
@@ -29,7 +29,7 @@ class CurrencyViewController: UIViewController, CurrencyDisplayDelegate {
         displayAlert(message: text)
     }
 
-    private var mode: CurrencyMode? {
+    private var mode: Converter.Mode? {
         didSet {
             if mode == .dolToEur {
                 originLabel.text = "Dollards"
@@ -45,8 +45,7 @@ class CurrencyViewController: UIViewController, CurrencyDisplayDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        currencyController.displayDelegate = self
+        converter.displayDelegate = self
         mode = .dolToEur
         backgroundView.layer.cornerRadius = 10
         backgroundConvert.layer.cornerRadius = 10
@@ -55,7 +54,7 @@ class CurrencyViewController: UIViewController, CurrencyDisplayDelegate {
         backgroundConvert.layer.shadowRadius = 3
         backgroundConvert.layer.shadowOpacity = 0.5
         convertButton.layer.cornerRadius = 10
-        currencyController.fechingData()
+        converter.fetchData()
     }
     
     func displayAlert(message: String) {
@@ -90,7 +89,7 @@ class CurrencyViewController: UIViewController, CurrencyDisplayDelegate {
     }
         
     @IBAction func convertButton(_ sender: UIButton) {
-        currencyController.convertValue(mode: mode, value: textField.text)
+        converter.convertValue(mode: mode, value: textField.text)
     }    
     
 }

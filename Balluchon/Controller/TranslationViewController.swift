@@ -8,8 +8,7 @@
 
 import UIKit
 
-class TranslationViewController: UIViewController, UITextViewDelegate, TranslationDisplayDelegate {
-    
+class TranslationViewController: UIViewController, UITextViewDelegate, TranslaterDelegate {
     
     @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var textField: UITextView!
@@ -19,33 +18,25 @@ class TranslationViewController: UIViewController, UITextViewDelegate, Translati
     @IBOutlet weak var originLabel: UILabel!
     @IBOutlet weak var destinationLabel: UILabel!
     
-    let translationController = TranslationController()
-    
-    private var from: Language?
-    private var to: Language?
-    
-    private var mode: TranslateMode? {
+    let translater = Translater()
+    private var destinationLanguage: Translater.Language = .en {
         didSet {
-            if mode == .enToFr {
-                from = .en
-                to = .fr
-                originLabel.text = "English"
-                destinationLabel.text = "French"
-                textField.text = "Enter your text here"
-            } else {
-                from = .fr
-                to = .en
+            if destinationLanguage == .en {
                 originLabel.text = "French"
                 destinationLabel.text = "English"
-                textField.text = "Entrez votre texte ici"
+                textField.text = "Entrez votre texte à traduire ici"
+            } else {
+                originLabel.text = "English"
+                destinationLabel.text = "French"
+                textField.text = "Enter your text to translate here"
             }
         }
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        translationController.displayDelegate = self
-        mode = .enToFr
+        translater.displayDelegate = self
+        destinationLanguage = .en
         backgroundView.layer.cornerRadius = 10
         textField.layer.cornerRadius = 10
         translateButton.layer.cornerRadius = 10
@@ -81,7 +72,11 @@ class TranslationViewController: UIViewController, UITextViewDelegate, Translati
     @IBAction func translateButton(_ sender: UIButton) {
         
         textField.resignFirstResponder()
-        translationController.translateText(from: from, to: to, text: textField.text)
+        do {
+            try translater.translate(text: textField.text, to: destinationLanguage)
+        } catch {
+            print("ERROR")
+        }
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
@@ -89,10 +84,11 @@ class TranslationViewController: UIViewController, UITextViewDelegate, Translati
     }
     
     @IBAction func switchLanguageButton(_ sender: UIButton) {
-        if mode! == .enToFr {
-            mode! = .frToEn
+        textFieldResult.text = ""
+        if destinationLanguage == .en {
+            destinationLanguage = .fr
         } else {
-            mode! = .enToFr
+            destinationLanguage = .en
         }
     }
 

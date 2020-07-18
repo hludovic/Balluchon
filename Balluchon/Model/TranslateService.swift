@@ -21,7 +21,7 @@ class TranslateService {
         self.session = session
     }
     
-    func translate(from: Language, to: Language, text: String, callback: @escaping (Bool, ResultTranslation?) -> (Void)) {
+    func translate(from: Translater.Language, to: Translater.Language, text: String, callback: @escaping (Bool, TranslationResult?) -> (Void)) {
         var request = URLRequest(url: baseURL)
         request.httpMethod = "POST"
         request.httpBody = "key=\(apiKey)&source=\(from.rawValue)&q=\(text)&target=\(to.rawValue)&\(from)&source&format=text".data(using: .utf8)
@@ -39,16 +39,13 @@ class TranslateService {
                     return
                 }
                 
-                guard let responseJSON = try? JSONDecoder().decode(ResultTranslation.self, from: data) else {
+                guard let responseJSON = try? JSONDecoder().decode(TranslationResult.self, from: data) else {
                     callback(false, nil)
                     return
                 }
                 callback(true, responseJSON)
             }
-            
         }
         task?.resume()
     }
-    
-
 }

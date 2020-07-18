@@ -34,8 +34,7 @@ class CurrencyServiceTestCase: XCTestCase {
         // When
         currencyService.getCurrency { (response, currency) -> (Void) in
             // Then
-            XCTAssertEqual("2020-07-14", currency!.date)
-            XCTAssertEqual(1.1375, currency!.rates.USD)
+            XCTAssertEqual(1.1384920000000001, currency!.rates.USD)
             XCTAssertTrue(response)
             XCTAssertNotNil(currency)
             expectation.fulfill()
