@@ -11,16 +11,21 @@ import Foundation
 class FakeResponseData {
 
     static var correctCurrencyData: Data? {
-        let bundle = Bundle.init(for: FakeResponseData.self)
+        let bundle = Bundle(for: FakeResponseData.self)
         let url = bundle.url(forResource: "Currency", withExtension: "json")!
+        return try! Data(contentsOf: url)
+    }
+    
+    static var correctWeatherData: Data? {
+        let bundle = Bundle(for: FakeResponseData.self)
+        let url = bundle.url(forResource: "Translation", withExtension: "json")!
         return try! Data(contentsOf: url)
     }
     
     static var correctTranslationData: Data? {
         let bundle = Bundle(for: FakeResponseData.self)
         let url = bundle.url(forResource: "Translation", withExtension: "json")!
-        let data = try! Data(contentsOf: url)
-        return data
+        return try! Data(contentsOf: url)
     }
     
     static var incorectData = "ErrorData".data(using: .utf8)
