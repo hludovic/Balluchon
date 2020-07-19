@@ -19,29 +19,24 @@ class WeatherService {
     }
     
     func getWeather(cityID: String, callback: @escaping (Bool, WeatherResult?, Data?) -> (Void)) {
-
         task?.cancel()
         task = session.dataTask(with: urlRequest(cityID: cityID), completionHandler: { (data, response, error) in
-            
             DispatchQueue.main.async {
                 guard let data = data, error == nil else {
-                    print("ERROR-----1")
+                    callback(false, nil, nil)
                     return
                 }
-                
                 guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-                    print("ERROR-----2")
+                    callback(false, nil, nil)
                     return
                 }
-                
                 guard let responseJSON = try? JSONDecoder().decode(WeatherResult.self, from: data) else {
-                    print("ERROR-----3")
+                    callback(false, nil, nil)
                     return
                 }
-                
                 self.getIcon(id: responseJSON.weather[0].icon) { (data) -> (Void) in
                     guard let data = data else {
-                        print("ERROR")
+                        callback(false, nil, nil)
                         return
                     }
                     callback(true, responseJSON, data)
@@ -55,7 +50,6 @@ class WeatherService {
         let urlRequest = URL(string: "https://openweathermap.org/img/w/\(id).png")!
         task?.cancel()
         task = session.dataTask(with: urlRequest, completionHandler: { (data, response, error) in
-            
             DispatchQueue.main.async {
                 guard let data = data, error == nil else {
                     print("ERROR")
@@ -69,11 +63,7 @@ class WeatherService {
                 }
                 completion(data)
             }
-            
         })
         task?.resume()
-        
     }
-    
-    
 }

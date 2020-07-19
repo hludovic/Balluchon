@@ -15,18 +15,10 @@ protocol TranslaterDelegate: AnyObject {
 }
 
 class Translater {
-    
     weak var displayDelegate: TranslaterDelegate?
-    private let translationService = TranslateService.shared
-    
-    enum Mode {
-        case enToFr, frToEn
-    }
-    
     enum Language: String {
         case en = "en", fr = "fr"
     }
-        
     private(set) var errorMessage: String? {
         didSet { displayDelegate?.displayError(errorMessage!) }
     }
@@ -39,22 +31,17 @@ class Translater {
             errorMessage = "There is no information on the language of origin or destination."
             return
         }
-                
         guard let text = text, text != "" else {
             errorMessage = "First enter a text to be translated."
             return
         }
         
         var from: Language {
-            if to == .en {
-                return .fr
-            } else {
-                return .en
-            }
+            return to == .en ? .fr : .en
         }
         
         displayDelegate?.displayActivity(true)
-        translationService.translate(from: from, to: to, text: text) { (success, result) -> (Void) in
+        TranslateService.shared.translate(from: from, to: to, text: text) { (success, result) -> (Void) in
             guard success, let result = result else {
                 self.errorMessage = "le texte n'a pas pu être traduit"
                 self.displayDelegate?.displayActivity(false)

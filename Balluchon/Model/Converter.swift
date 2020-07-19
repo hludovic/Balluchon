@@ -82,7 +82,6 @@ class Converter {
             return numberFormatted
         } else { return "" }
     }
-    
 }
 
 struct Currency: Codable {

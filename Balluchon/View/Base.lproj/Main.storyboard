@@ -202,15 +202,20 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="tQk-g7-F4d">
+                                        <rect key="frame" x="177" y="40" width="20" height="20"/>
+                                    </activityIndicatorView>
                                 </subviews>
                                 <color key="backgroundColor" name="#4a6d88"/>
                                 <constraints>
                                     <constraint firstItem="I49-2a-dGa" firstAttribute="top" secondItem="UNj-2k-CfH" secondAttribute="top" constant="8" id="5tK-Ro-ObI"/>
                                     <constraint firstItem="vbf-Rn-lQw" firstAttribute="leading" secondItem="SZt-ix-AyE" secondAttribute="trailing" constant="30" id="7zW-G8-YFO"/>
                                     <constraint firstAttribute="height" constant="100" id="Nfm-uS-Z7p"/>
+                                    <constraint firstItem="tQk-g7-F4d" firstAttribute="centerY" secondItem="UNj-2k-CfH" secondAttribute="centerY" id="Tbg-rp-1SB"/>
                                     <constraint firstItem="vbf-Rn-lQw" firstAttribute="centerY" secondItem="SZt-ix-AyE" secondAttribute="centerY" id="bAU-P0-dBI"/>
                                     <constraint firstItem="SZt-ix-AyE" firstAttribute="centerY" secondItem="u1t-vc-wup" secondAttribute="centerY" id="dbE-ob-Kho"/>
                                     <constraint firstItem="SZt-ix-AyE" firstAttribute="leading" secondItem="u1t-vc-wup" secondAttribute="trailing" constant="8" id="eQc-NV-RBl"/>
+                                    <constraint firstItem="tQk-g7-F4d" firstAttribute="centerX" secondItem="UNj-2k-CfH" secondAttribute="centerX" id="gWa-RP-QjW"/>
                                     <constraint firstItem="u1t-vc-wup" firstAttribute="top" secondItem="UNj-2k-CfH" secondAttribute="top" constant="40" id="gdb-LC-Ppy"/>
                                     <constraint firstItem="u1t-vc-wup" firstAttribute="leading" secondItem="UNj-2k-CfH" secondAttribute="leading" constant="8" id="jEl-v8-aAY"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="vbf-Rn-lQw" secondAttribute="trailing" constant="20" symbolic="YES" id="jaQ-ah-xOL"/>
@@ -245,6 +250,9 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="R1F-37-jfH">
+                                        <rect key="frame" x="177" y="40" width="20" height="20"/>
+                                    </activityIndicatorView>
                                 </subviews>
                                 <color key="backgroundColor" name="#4a6d88"/>
                                 <constraints>
@@ -252,12 +260,14 @@
                                     <constraint firstItem="Q6E-zm-iq0" firstAttribute="leading" secondItem="WQv-R6-WV3" secondAttribute="trailing" constant="30" id="5yz-VR-Be1"/>
                                     <constraint firstItem="Q6E-zm-iq0" firstAttribute="centerY" secondItem="WQv-R6-WV3" secondAttribute="centerY" id="AZ6-KE-47l"/>
                                     <constraint firstItem="BAM-Wo-GUV" firstAttribute="leading" secondItem="JJF-US-RvG" secondAttribute="leading" constant="8" id="IBm-ld-yAo"/>
+                                    <constraint firstItem="R1F-37-jfH" firstAttribute="centerX" secondItem="JJF-US-RvG" secondAttribute="centerX" id="JGu-7R-7i0"/>
                                     <constraint firstItem="X2O-az-06W" firstAttribute="top" secondItem="JJF-US-RvG" secondAttribute="top" constant="8" id="K2t-13-6h8"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Q6E-zm-iq0" secondAttribute="trailing" constant="20" symbolic="YES" id="cuN-Kk-9KX"/>
                                     <constraint firstAttribute="height" constant="100" id="kND-rI-gmg"/>
                                     <constraint firstItem="X2O-az-06W" firstAttribute="centerX" secondItem="JJF-US-RvG" secondAttribute="centerX" id="nxa-LH-P06"/>
                                     <constraint firstItem="WQv-R6-WV3" firstAttribute="leading" secondItem="BAM-Wo-GUV" secondAttribute="trailing" constant="8" id="owp-12-Ikd"/>
                                     <constraint firstItem="BAM-Wo-GUV" firstAttribute="top" secondItem="JJF-US-RvG" secondAttribute="top" constant="40" id="qLq-AR-3K8"/>
+                                    <constraint firstItem="R1F-37-jfH" firstAttribute="centerY" secondItem="JJF-US-RvG" secondAttribute="centerY" id="ynS-Id-Rpw"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -278,10 +288,12 @@
                     <navigationItem key="navigationItem" title="Météo" id="JYK-0T-etJ"/>
                     <connections>
                         <outlet property="FirstCityBackground" destination="UNj-2k-CfH" id="f8e-4e-YiS"/>
+                        <outlet property="firstCityActivityIndicator" destination="tQk-g7-F4d" id="Z48-g2-2lZ"/>
                         <outlet property="firstCityDescription" destination="vbf-Rn-lQw" id="QOX-S8-wDd"/>
                         <outlet property="firstCityImage" destination="u1t-vc-wup" id="88l-Kl-bi0"/>
                         <outlet property="firstCityName" destination="I49-2a-dGa" id="6X6-15-Nah"/>
                         <outlet property="firstCityTemperature" destination="SZt-ix-AyE" id="5Mi-Mb-hjN"/>
+                        <outlet property="secondCityActivityIndicator" destination="R1F-37-jfH" id="Tdk-Cq-TJQ"/>
                         <outlet property="secondCityBackground" destination="JJF-US-RvG" id="MKO-2b-yuD"/>
                         <outlet property="secondCityDescription" destination="Q6E-zm-iq0" id="CTa-RW-xSD"/>
                         <outlet property="secondCityImage" destination="BAM-Wo-GUV" id="Ofb-zX-6jK"/>
