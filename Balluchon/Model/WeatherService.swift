@@ -13,19 +13,13 @@ class WeatherService {
     private let apiKey = valueForAPIKey(named: "ApiOpenWeather")
     // --- --- --- ---
     private let session = URLSession(configuration: .default)
-    private var task: URLSessionDataTask?
-    static let shared = WeatherService()
-    private init() {}
-//    private let idLamentin = "3579023"
-//    private let idNewYork = "5128581"
-    
+    private var task: URLSessionDataTask?    
     private func urlRequest(cityID: String) -> URL {
         return URL(string: "https://api.openweathermap.org/data/2.5/weather?id=\(cityID)&units=metric&appid=\(apiKey)")!
-        
     }
     
     func getWeather(cityID: String, callback: @escaping (Bool, WeatherResult?, Data?) -> (Void)) {
-        
+
         task?.cancel()
         task = session.dataTask(with: urlRequest(cityID: cityID), completionHandler: { (data, response, error) in
             
@@ -51,15 +45,13 @@ class WeatherService {
                         return
                     }
                     callback(true, responseJSON, data)
-                    print(responseJSON.name)
-
                 }
             }
         })
         task?.resume()
     }
     
-    func getIcon(id: String, completion: @escaping (Data?) -> (Void)) {
+    private func getIcon(id: String, completion: @escaping (Data?) -> (Void)) {
         let urlRequest = URL(string: "https://openweathermap.org/img/w/\(id).png")!
         task?.cancel()
         task = session.dataTask(with: urlRequest, completionHandler: { (data, response, error) in

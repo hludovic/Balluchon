@@ -16,6 +16,7 @@ struct WeatherResult: Codable {
         let temp_max: Double
         let temp_min: Double
         let humidity: Double
+        let feels_like: Double
         let temp: Double
     }
     struct Weather: Codable {
