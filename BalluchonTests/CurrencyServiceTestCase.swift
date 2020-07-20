@@ -13,7 +13,7 @@ class CurrencyServiceTestCase: XCTestCase {
     func testCurrencyServiceShouldReturnCallbackErrorIfNoData() {
         // Given
         let session = FakeURLSession(data: nil, response: nil, error: nil)
-        let currencyService = CurrencyService(session: session)
+        let currencyService = ConverterService(session: session)
         let expectation = XCTestExpectation(description: "Wait queue")
         // When
         currencyService.getCurrency { (response, currency) -> (Void) in
@@ -27,7 +27,7 @@ class CurrencyServiceTestCase: XCTestCase {
     
     func testCurrencyServiceShouldReturnCallbackSuccessIfOK() {
         // Given
-        let currencyService = CurrencyService(
+        let currencyService = ConverterService(
             session: FakeURLSession(data: FakeResponseData.correctCurrencyData, response: FakeResponseData.responseOK, error: nil))
         
         let expectation = XCTestExpectation(description: "Wait queue")

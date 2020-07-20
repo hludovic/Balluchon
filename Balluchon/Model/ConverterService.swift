@@ -8,14 +8,14 @@
 
 import Foundation
 
-class CurrencyService {
+class ConverterService {
     // --- API KEY ---
     private let apiKey = valueForAPIKey(named:"ApiFixer")
     // --- --- --- ---
     private var session = URLSession(configuration: .default)
     private var task: URLSessionDataTask?
     private init() {}
-    static var shared = CurrencyService()
+    static var shared = ConverterService()
     init(session: URLSession) {
         self.session = session
     }

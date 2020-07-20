@@ -27,9 +27,10 @@
 		437EDB9624BFFE14003A42B6 /* ApiKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437EDB9424BFFE14003A42B6 /* ApiKeys.swift */; };
 		437EDB9724BFFE14003A42B6 /* ApiKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 437EDB9524BFFE14003A42B6 /* ApiKeys.plist */; };
 		43B055F724C131C300ED3C3F /* Translation.json in Resources */ = {isa = PBXBuildFile; fileRef = 43B055F624C131C300ED3C3F /* Translation.json */; };
-		43B4C8E224BEA53700303C08 /* CurrencyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B4C8E124BEA53700303C08 /* CurrencyService.swift */; };
+		43B4C8E224BEA53700303C08 /* ConverterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B4C8E124BEA53700303C08 /* ConverterService.swift */; };
 		43B4C8E524BEA94D00303C08 /* Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B4C8E424BEA94D00303C08 /* Converter.swift */; };
 		43CAA49124C0068900221922 /* Translater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CAA49024C0068900221922 /* Translater.swift */; };
+		43D4934824C6102C0098C4B8 /* ConverterTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D4934724C6102C0098C4B8 /* ConverterTestCase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,9 +68,10 @@
 		437EDB9424BFFE14003A42B6 /* ApiKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiKeys.swift; sourceTree = "<group>"; };
 		437EDB9524BFFE14003A42B6 /* ApiKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ApiKeys.plist; sourceTree = "<group>"; };
 		43B055F624C131C300ED3C3F /* Translation.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Translation.json; sourceTree = "<group>"; };
-		43B4C8E124BEA53700303C08 /* CurrencyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyService.swift; sourceTree = "<group>"; };
+		43B4C8E124BEA53700303C08 /* ConverterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterService.swift; sourceTree = "<group>"; };
 		43B4C8E424BEA94D00303C08 /* Converter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Converter.swift; sourceTree = "<group>"; };
 		43CAA49024C0068900221922 /* Translater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Translater.swift; sourceTree = "<group>"; };
+		43D4934724C6102C0098C4B8 /* ConverterTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterTestCase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +97,7 @@
 			children = (
 				43254B2124BF4D6700284ED5 /* Info.plist */,
 				43254B2724BF4DB000284ED5 /* CurrencyServiceTestCase.swift */,
+				43D4934724C6102C0098C4B8 /* ConverterTestCase.swift */,
 				4325EC6B24C11AC400369F95 /* TranslationServiceTestCase.swift */,
 				43254B2B24BF4F4400284ED5 /* FakeResponseData.swift */,
 				43254B2D24BF524B00284ED5 /* FakeURLSession.swift */,
@@ -169,7 +172,7 @@
 		43B4C8E324BEA7C000303C08 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				43B4C8E124BEA53700303C08 /* CurrencyService.swift */,
+				43B4C8E124BEA53700303C08 /* ConverterService.swift */,
 				43254B1724BF4CCF00284ED5 /* TranslateService.swift */,
 				431B798124C38D560076DA13 /* WeatherService.swift */,
 				43B4C8E424BEA94D00303C08 /* Converter.swift */,
@@ -289,6 +292,7 @@
 				43254B2E24BF524B00284ED5 /* FakeURLSession.swift in Sources */,
 				4325EC6C24C11AC400369F95 /* TranslationServiceTestCase.swift in Sources */,
 				43254B2C24BF4F4400284ED5 /* FakeResponseData.swift in Sources */,
+				43D4934824C6102C0098C4B8 /* ConverterTestCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,7 +302,7 @@
 			files = (
 				431B798224C38D560076DA13 /* WeatherService.swift in Sources */,
 				4310A24A24C3A795003C6B7A /* WeatherViewController.swift in Sources */,
-				43B4C8E224BEA53700303C08 /* CurrencyService.swift in Sources */,
+				43B4C8E224BEA53700303C08 /* ConverterService.swift in Sources */,
 				43B4C8E524BEA94D00303C08 /* Converter.swift in Sources */,
 				431B798624C39CF60076DA13 /* Weather.swift in Sources */,
 				434AF05B24BE773900D69C7D /* AppDelegate.swift in Sources */,

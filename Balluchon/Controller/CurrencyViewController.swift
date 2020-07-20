@@ -21,14 +21,6 @@ class CurrencyViewController: UIViewController, ConverterDelegate {
 
     private let converter = Converter()
     
-    func displayResult(_ text: String) {
-        resultatLabel.text = text
-    }
-    
-    func displayError(_ text: String) {
-        displayAlert(message: text)
-    }
-
     private var mode: Converter.Mode? {
         didSet {
             if mode == .dolToEur {
@@ -46,6 +38,7 @@ class CurrencyViewController: UIViewController, ConverterDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         converter.displayDelegate = self
+        addRefreshButton()
         mode = .dolToEur
         backgroundView.layer.cornerRadius = 10
         backgroundConvert.layer.cornerRadius = 10
@@ -57,11 +50,27 @@ class CurrencyViewController: UIViewController, ConverterDelegate {
         converter.fetchData()
     }
     
-    func displayAlert(message: String) {
+    func displayErrorAlert(message: String) {
         let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
         let action = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
         alert.addAction(action)
         present(alert, animated: true, completion: nil)
+    }
+    
+    func addRefreshButton() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshData))
+    }
+    
+    @objc func refreshData() {
+        converter.fetchData()
+    }
+    
+    func displayResult(_ text: String) {
+        resultatLabel.text = text
+    }
+    
+    func displayError(_ text: String) {
+        displayErrorAlert(message: text)
     }
     
     func displayActivity(_ activity: Bool) {

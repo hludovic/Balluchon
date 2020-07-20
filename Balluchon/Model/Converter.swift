@@ -16,7 +16,13 @@ protocol ConverterDelegate: AnyObject {
 
 class Converter {
     weak var displayDelegate: ConverterDelegate?
-    private var rate: Double?
+    var currency: Currency?
+    
+    convenience init(currency: Currency) {
+        self.init()
+        self.currency = currency
+    }
+    
     enum Mode {
         case eurToDol, dolToEur
     }
@@ -28,46 +34,46 @@ class Converter {
     private(set) var resultMessage: String? {
         didSet { displayDelegate?.displayResult(resultMessage!) }
     }
+    
+    private(set) var isLoading: Bool? {
+        didSet { displayDelegate?.displayActivity(isLoading!) }
+    }
 
     func fetchData() {
-        displayDelegate?.displayActivity(true)
-        CurrencyService.shared.getCurrency { (success, currency) -> (Void) in
+        isLoading = true
+        ConverterService.shared.getCurrency { (success, currency) -> (Void) in
             guard success, let currency = currency else {
                 self.displayDelegate?.displayError("The data could not be downloaded")
+                self.isLoading = false
                 return
             }
-            self.rate = currency.rates.USD
-            self.displayDelegate?.displayActivity(false)
+            self.currency = currency
+            self.isLoading = false
         }
     }
     
     func convertValue(mode: Converter.Mode?, value: String?) {
-        
+        guard let currency = currency else {
+            errorMessage = "The currency is not downloaded"
+            return
+        }
         guard let mode = mode else {
             errorMessage = "The mode of translation has not been indicated."
             return
         }
-        
         guard let value = value else {
             errorMessage = "We haven't received the number to convert."
             return
         }
-        
         guard let valueDouble = Double(value) else {
             errorMessage = "You didn't enter a number"
             return
         }
-        
-        guard let rate = rate else {
-            errorMessage = "The rate could not be found"
-            return
-        }
-        
         switch mode {
         case .dolToEur:
-            resultMessage = "\(formatResult(valueDouble / rate)) €"
+            resultMessage = "\(formatResult(valueDouble / currency.rates.USD)) €"
         case .eurToDol:
-            resultMessage = "\(formatResult(rate * valueDouble)) $"
+            resultMessage = "\(formatResult(currency.rates.USD * valueDouble)) $"
         }
     }
     
