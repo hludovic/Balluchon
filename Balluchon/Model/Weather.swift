@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 protocol WeatherDelegate: AnyObject {
     func displayResult(_ data: WeatherData)
     func displayError(_ text: String)
@@ -18,31 +17,43 @@ protocol WeatherDelegate: AnyObject {
 class Weather {
     weak var displayDelegate: WeatherDelegate?
     enum City: String {
-        case firstCityID = "3579023"
-        case secondCityID = "5128581"
+        case firstCityID = "3579023" //  Lamentin
+        case secondCityID = "5128581" // New York City
+    }
+    
+    private(set) var errorMessage: String? {
+        didSet { displayDelegate?.displayError(errorMessage!) }
+    }
+    
+    private(set) var weatherData: WeatherData? {
+        didSet { displayDelegate?.displayResult(weatherData!) }
+    }
+    
+    private(set) var isLoading: (activity: Bool, city: Weather.City)? {
+        willSet { displayDelegate?.displayActivity(activity: newValue!.activity, cityID: newValue!.city)
+        }
     }
     
     func fetchData(cityID: City) {
-        displayDelegate?.displayActivity(activity: true, cityID: cityID)
+        self.isLoading = (true, cityID)
         let weatherServiceFirst = WeatherService()
         weatherServiceFirst.getWeather(cityID: cityID.rawValue) { (success, result, imageData) -> (Void) in
             guard success, let result = result, let imageData = imageData else {
-                self.displayDelegate?.displayActivity(activity: false, cityID: cityID)
-                self.displayDelegate?.displayError("We were unable to recover the data")
+                self.isLoading = (false, cityID)
+                self.errorMessage = "We were unable to recover the data"
                 return
             }
             guard let temperature = Int(exactly: result.main.feels_like.rounded()) else {
-                self.displayDelegate?.displayActivity(activity: false, cityID: cityID)
-                self.displayDelegate?.displayError("Temperature data is not good")
+                self.isLoading = (false, cityID)
+                self.errorMessage = "Temperature data is not good"
                 return
             }
-            let weatherData = WeatherData(cityID: cityID,
+            self.weatherData = WeatherData(cityID: cityID,
                                           cityName: result.name,
                                           cityImageData: imageData,
                                           cityDescription: result.weather[0].description,
                                           cityTemperature: "\(temperature)°C")
-            self.displayDelegate?.displayActivity(activity: false, cityID: cityID)
-            self.displayDelegate?.displayResult(weatherData)
+            self.isLoading = (false, cityID)
         }
     }
 }
