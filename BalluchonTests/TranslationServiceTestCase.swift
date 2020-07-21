@@ -26,7 +26,7 @@ class TranslationServiceTestCase: XCTestCase {
     
     func testTranslationServiceShouldReturnCallbackErrorIfWrongData() {
         // Given
-        let session = FakeURLSession(data: FakeResponseData.incorectData, response: FakeResponseData.responseOK, error: nil)
+        let session = FakeURLSession(data: FakeResponseData.incorrectData, response: FakeResponseData.responseOK, error: nil)
         let service = TranslateService(session: session)
         let expectation = XCTestExpectation(description: "Wait")
         service.translate(from: .en, to: .fr, text: "Hello world, My name is Ludovic") { (success, result) -> (Void) in

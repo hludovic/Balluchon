@@ -47,7 +47,7 @@ class CurrencyViewController: UIViewController, ConverterDelegate {
         backgroundConvert.layer.shadowRadius = 3
         backgroundConvert.layer.shadowOpacity = 0.5
         convertButton.layer.cornerRadius = 10
-        converter.fetchData()
+        refreshData()
     }
     
     func displayErrorAlert(message: String) {
@@ -62,7 +62,12 @@ class CurrencyViewController: UIViewController, ConverterDelegate {
     }
     
     @objc func refreshData() {
-        converter.fetchData()
+        converter.fetchData { (success) -> (Void) in
+            guard success else {
+                self.displayError("We were unable to refresh the data")
+                return
+            }
+        }
     }
     
     func displayResult(_ text: String) {

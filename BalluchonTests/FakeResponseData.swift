@@ -28,7 +28,7 @@ class FakeResponseData {
         return try! Data(contentsOf: url)
     }
     
-    static var incorectData = "ErrorData".data(using: .utf8)
+    static var incorrectData = "ErrorData".data(using: .utf8)
 
     static var responseOK = HTTPURLResponse(url: URL(string: "https://google.fr")!, statusCode: 200, httpVersion: nil, headerFields: nil)
     static var responseKO = HTTPURLResponse(url: URL(string: "https://google.fr")!, statusCode: 500, httpVersion: nil, headerFields: nil)

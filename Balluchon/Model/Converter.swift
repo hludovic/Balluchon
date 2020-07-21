@@ -16,7 +16,7 @@ protocol ConverterDelegate: AnyObject {
 
 class Converter {
     weak var displayDelegate: ConverterDelegate?
-    var currency: Currency?
+    private var currency: Currency?
     
     convenience init(currency: Currency) {
         self.init()
@@ -39,22 +39,24 @@ class Converter {
         didSet { displayDelegate?.displayActivity(isLoading!) }
     }
 
-    func fetchData() {
+    func fetchData(completion: @escaping (Bool) -> (Void)) {
         isLoading = true
         ConverterService.shared.getCurrency { (success, currency) -> (Void) in
             guard success, let currency = currency else {
                 self.displayDelegate?.displayError("The data could not be downloaded")
                 self.isLoading = false
+                completion(false    )
                 return
             }
             self.currency = currency
             self.isLoading = false
+            completion(true)
         }
     }
     
     func convertValue(mode: Converter.Mode?, value: String?) {
         guard let currency = currency else {
-            errorMessage = "The currency is not downloaded"
+            errorMessage = "The currency is not downloaded."
             return
         }
         guard let mode = mode else {
@@ -71,22 +73,10 @@ class Converter {
         }
         switch mode {
         case .dolToEur:
-            resultMessage = "\(formatResult(valueDouble / currency.rates.USD)) €"
+            resultMessage = String(format: "%.2f €", (valueDouble / currency.rates.USD))
         case .eurToDol:
-            resultMessage = "\(formatResult(currency.rates.USD * valueDouble)) $"
+            resultMessage = String(format: "%.2f $", (currency.rates.USD * valueDouble))
         }
-    }
-    
-    /// This method roun a Double value to 3 number of decimal places, and returns the result as String.
-    /// - Parameter result: The Double property that needs to be rounded.
-    private func formatResult(_ result: Double) -> String {
-        let numberFormatter = NumberFormatter()
-        numberFormatter.numberStyle = .decimal
-        numberFormatter.minimumFractionDigits = 0
-        numberFormatter.maximumFractionDigits = 3
-        if let numberFormatted = numberFormatter.string(from: NSNumber(value: result)) {
-            return numberFormatted
-        } else { return "" }
     }
 }
 
