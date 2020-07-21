@@ -45,7 +45,7 @@ class Converter {
             guard success, let currency = currency else {
                 self.displayDelegate?.displayError("The data could not be downloaded")
                 self.isLoading = false
-                completion(false    )
+                completion(false)
                 return
             }
             self.currency = currency

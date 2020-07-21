@@ -70,12 +70,12 @@ class TranslationViewController: UIViewController, UITextViewDelegate, Translate
     }
     
     @IBAction func translateButton(_ sender: UIButton) {
-        
         textField.resignFirstResponder()
-        do {
-            try translater.translate(text: textField.text, to: destinationLanguage)
-        } catch {
-            print("ERROR")
+        translater.translate(text: textField.text, to: destinationLanguage) { (success) -> (Void) in
+            guard success else {
+                self.displayError("We were unable to translate the text")
+                return
+            }
         }
     }
     
@@ -90,6 +90,7 @@ class TranslationViewController: UIViewController, UITextViewDelegate, Translate
         } else {
             destinationLanguage = .en
         }
+        textField.resignFirstResponder()
     }
 
     @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {

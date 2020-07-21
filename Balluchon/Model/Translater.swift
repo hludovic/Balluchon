@@ -15,45 +15,49 @@ protocol TranslaterDelegate: AnyObject {
 }
 
 class Translater {
-    weak var displayDelegate: TranslaterDelegate?
+    weak var displayDelegate: TranslaterDelegate?    
     enum Language: String {
         case en = "en", fr = "fr"
     }
+    
     private(set) var errorMessage: String? {
         didSet { displayDelegate?.displayError(errorMessage!) }
     }
-    private(set) var resultMessage: String? {
-        didSet { displayDelegate?.displayResult(resultMessage!) }
+    
+    private(set) var resultMessage: Translation? {
+        didSet { displayDelegate?.displayResult(resultMessage!.data.translations[0].translatedText) }
     }
-        
-    func translate(text: String?, to: Language?) throws {
+    
+    func translate(text: String?, to: Language?, completion: @escaping (Bool) -> (Void)) {
         guard let to = to else {
             errorMessage = "There is no information on the language of origin or destination."
+            completion(false)
             return
         }
         guard let text = text, text != "" else {
             errorMessage = "First enter a text to be translated."
+            completion(false)
             return
         }
-        
         var from: Language {
             return to == .en ? .fr : .en
         }
-        
         displayDelegate?.displayActivity(true)
         TranslateService.shared.translate(from: from, to: to, text: text) { (success, result) -> (Void) in
             guard success, let result = result else {
-                self.errorMessage = "le texte n'a pas pu être traduit"
+                self.errorMessage = "The text could not be translated."
                 self.displayDelegate?.displayActivity(false)
+                completion(false)
                 return
             }
             self.displayDelegate?.displayActivity(false)
-            self.resultMessage = result.data.translations[0].translatedText
+            self.resultMessage = result
+            completion(true)
         }
     }
  }
 
-struct TranslationResult: Codable {
+struct Translation: Codable {
     struct DataResult: Codable {
         struct Translation: Codable {
             var translatedText: String

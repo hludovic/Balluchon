@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CurrencyViewController: UIViewController, ConverterDelegate {
+class ConverterViewController: UIViewController, ConverterDelegate {
     
     @IBOutlet weak var destinationLabel: UILabel!
     @IBOutlet weak var originLabel: UILabel!
