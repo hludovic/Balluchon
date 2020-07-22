@@ -24,6 +24,7 @@
 		434AF06724BE773E00D69C7D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 434AF06524BE773E00D69C7D /* LaunchScreen.storyboard */; };
 		434F13F724BE7948002A097A /* ConverterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434F13F624BE7948002A097A /* ConverterViewController.swift */; };
 		4358D48F24C78D2D00800DAA /* WeatherTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4358D48E24C78D2D00800DAA /* WeatherTestCase.swift */; };
+		4358D49124C7B07500800DAA /* WeatherServiceTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4358D49024C7B07500800DAA /* WeatherServiceTestCase.swift */; };
 		436E6D6824C691FC00BE013B /* TranslaterTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436E6D6724C691FC00BE013B /* TranslaterTestCase.swift */; };
 		4377662624BF2D0100573DEC /* TranslationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4377662524BF2D0100573DEC /* TranslationViewController.swift */; };
 		437EDB9624BFFE14003A42B6 /* ApiKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437EDB9424BFFE14003A42B6 /* ApiKeys.swift */; };
@@ -67,6 +68,7 @@
 		434AF06824BE773E00D69C7D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = "Balluchon/Supporting files/Info.plist"; sourceTree = SOURCE_ROOT; };
 		434F13F624BE7948002A097A /* ConverterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterViewController.swift; sourceTree = "<group>"; };
 		4358D48E24C78D2D00800DAA /* WeatherTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherTestCase.swift; sourceTree = "<group>"; };
+		4358D49024C7B07500800DAA /* WeatherServiceTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherServiceTestCase.swift; sourceTree = "<group>"; };
 		436E6D6724C691FC00BE013B /* TranslaterTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslaterTestCase.swift; sourceTree = "<group>"; };
 		4377662524BF2D0100573DEC /* TranslationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationViewController.swift; sourceTree = "<group>"; };
 		437EDB9424BFFE14003A42B6 /* ApiKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiKeys.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 				43254B2124BF4D6700284ED5 /* Info.plist */,
 				43254B2724BF4DB000284ED5 /* ConverterServiceTestCase.swift */,
 				4325EC6B24C11AC400369F95 /* TranslationServiceTestCase.swift */,
+				4358D49024C7B07500800DAA /* WeatherServiceTestCase.swift */,
 				43D4934724C6102C0098C4B8 /* ConverterTestCase.swift */,
 				436E6D6724C691FC00BE013B /* TranslaterTestCase.swift */,
 				4358D48E24C78D2D00800DAA /* WeatherTestCase.swift */,
@@ -298,6 +301,7 @@
 				43254B2E24BF524B00284ED5 /* FakeURLSession.swift in Sources */,
 				4325EC6C24C11AC400369F95 /* TranslationServiceTestCase.swift in Sources */,
 				436E6D6824C691FC00BE013B /* TranslaterTestCase.swift in Sources */,
+				4358D49124C7B07500800DAA /* WeatherServiceTestCase.swift in Sources */,
 				43254B2C24BF4F4400284ED5 /* FakeResponseData.swift in Sources */,
 				43D4934824C6102C0098C4B8 /* ConverterTestCase.swift in Sources */,
 				4358D48F24C78D2D00800DAA /* WeatherTestCase.swift in Sources */,

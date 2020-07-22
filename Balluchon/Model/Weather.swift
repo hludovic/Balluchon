@@ -17,8 +17,8 @@ protocol WeatherDelegate: AnyObject {
 class Weather {
     weak var displayDelegate: WeatherDelegate?
     enum City: String {
-        case firstCityID = "3579023" //  Lamentin
-        case secondCityID = "5128581" // New York City
+        case cityIDLamentin = "3579023"
+        case cityIDNewYork = "5128581"
     }
     
     private(set) var errorMessage: String? {
@@ -34,18 +34,20 @@ class Weather {
         }
     }
     
-    func fetchData(cityID: City) {
+    func fetchData(cityID: City, completion: @escaping (Bool) -> (Void)) {
         self.isLoading = (true, cityID)
-        let weatherServiceFirst = WeatherService()
-        weatherServiceFirst.getWeather(cityID: cityID.rawValue) { (success, result, imageData) -> (Void) in
+        let weatherService = WeatherService()
+        weatherService.getWeather(cityID: cityID.rawValue) { (success, result, imageData) -> (Void) in
             guard success, let result = result, let imageData = imageData else {
                 self.isLoading = (false, cityID)
                 self.errorMessage = "We were unable to recover the data"
+                completion(false)
                 return
             }
             guard let temperature = Int(exactly: result.main.feels_like.rounded()) else {
                 self.isLoading = (false, cityID)
                 self.errorMessage = "Temperature data is not good"
+                completion(false)
                 return
             }
             self.weatherData = WeatherData(cityID: cityID,
@@ -54,6 +56,7 @@ class Weather {
                                           cityDescription: result.weather[0].description,
                                           cityTemperature: "\(temperature)°C")
             self.isLoading = (false, cityID)
+            completion(true)
         }
     }
 }

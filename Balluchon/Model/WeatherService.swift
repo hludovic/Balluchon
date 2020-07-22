@@ -12,8 +12,13 @@ class WeatherService {
     // --- API KEY ---
     private let apiKey = valueForAPIKey(named: "ApiOpenWeather")
     // --- --- --- ---
-    private let session = URLSession(configuration: .default)
+    private var session = URLSession(configuration: .default)
     private var task: URLSessionDataTask?
+    convenience init(session: URLSession) {
+        self.init()
+        self.session = session
+    }
+    
     private func urlRequest(cityID: String) -> URL {
         return URL(string: "https://api.openweathermap.org/data/2.5/weather?id=\(cityID)&units=metric&appid=\(apiKey)")!
     }

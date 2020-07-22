@@ -49,18 +49,28 @@ class WeatherViewController: UIViewController, WeatherDelegate {
     }
     
     @objc func refreshData() {
-        weather.fetchData(cityID: .firstCityID)
-        weather.fetchData(cityID: .secondCityID)
+        weather.fetchData(cityID: .cityIDLamentin) { (success) -> (Void) in
+            guard success else {
+                self.displayError("We could not retrieve data from the first city")
+                return
+            }
+        }
+        weather.fetchData(cityID: .cityIDNewYork) { (success) -> (Void) in
+            guard success else {
+                self.displayError("We could not retrieve data from the second city")
+                return
+            }
+        }
     }
     
     func displayResult(_ data: WeatherData) {
         switch data.cityID {
-        case .firstCityID :
+        case .cityIDLamentin :
             self.firstCityName.text = data.cityName
             self.firstCityImage.image = UIImage(data: data.cityImageData)
             self.firstCityDescription.text = data.cityDescription
             self.firstCityTemperature.text = data.cityTemperature
-        case .secondCityID :
+        case .cityIDNewYork :
             self.secondCityName.text = data.cityName
             self.secondCityImage.image = UIImage(data: data.cityImageData)
             self.secondCityDescription.text = data.cityDescription
@@ -76,7 +86,7 @@ class WeatherViewController: UIViewController, WeatherDelegate {
     
     func displayActivity(activity: Bool, cityID: Weather.City) {
         switch cityID {
-        case .firstCityID:
+        case .cityIDLamentin:
             if activity {
                 firstCityName.isHidden = true
                 firstCityTemperature.isHidden = true
@@ -88,7 +98,7 @@ class WeatherViewController: UIViewController, WeatherDelegate {
                 firstCityDescription.isHidden = false
                 firstCityActivityIndicator.stopAnimating()
             }
-        case .secondCityID:
+        case .cityIDNewYork:
             if activity {
                 secondCityTemperature.isHidden = true
                 secondCityName.isHidden = true
