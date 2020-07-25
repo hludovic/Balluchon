@@ -38,8 +38,11 @@ class ConverterViewController: UIViewController, ConverterDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         converter.displayDelegate = self
-        addRefreshButton()
         mode = .dolToEur
+        
+        let refreshButton = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshData))
+        navigationItem.rightBarButtonItem = refreshButton
+
         backgroundView.layer.cornerRadius = 10
         backgroundConvert.layer.cornerRadius = 10
         backgroundConvert.layer.shadowColor = UIColor.black.cgColor
@@ -47,6 +50,7 @@ class ConverterViewController: UIViewController, ConverterDelegate {
         backgroundConvert.layer.shadowRadius = 3
         backgroundConvert.layer.shadowOpacity = 0.5
         convertButton.layer.cornerRadius = 10
+        
         refreshData()
     }
     
@@ -56,11 +60,7 @@ class ConverterViewController: UIViewController, ConverterDelegate {
         alert.addAction(action)
         present(alert, animated: true, completion: nil)
     }
-    
-    func addRefreshButton() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshData))
-    }
-    
+        
     @objc func refreshData() {
         converter.fetchData { (success) -> (Void) in
             guard success else {

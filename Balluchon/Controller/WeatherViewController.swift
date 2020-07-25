@@ -27,7 +27,9 @@ class WeatherViewController: UIViewController, WeatherDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         weather.displayDelegate = self
-        addRefreshButton()
+        
+        let refreshButton = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshData))
+        navigationItem.rightBarButtonItem = refreshButton
         
         FirstCityBackground.layer.cornerRadius = 10
         FirstCityBackground.layer.shadowColor = UIColor.black.cgColor
@@ -43,11 +45,7 @@ class WeatherViewController: UIViewController, WeatherDelegate {
         
         refreshData()
     }
-    
-    func addRefreshButton() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshData))
-    }
-    
+        
     @objc func refreshData() {
         weather.fetchData(cityID: .cityIDLamentin) { (success) -> (Void) in
             guard success else {
