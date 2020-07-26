@@ -8,8 +8,9 @@
 
 import UIKit
 
-class ConverterViewController: UIViewController, ConverterDelegate {
+class ConverterViewController: UIViewController {
     
+    // MARK: - IBOutlet Properties
     @IBOutlet weak var destinationLabel: UILabel!
     @IBOutlet weak var originLabel: UILabel!
     @IBOutlet weak var resultatLabel: UILabel!
@@ -19,6 +20,7 @@ class ConverterViewController: UIViewController, ConverterDelegate {
     @IBOutlet weak var backgroundConvert: UIView!
     @IBOutlet weak var loadingStackView: UIStackView!
 
+    // MARK: - Properties
     private let converter = Converter()
     
     private var mode: Converter.Mode? {
@@ -34,7 +36,8 @@ class ConverterViewController: UIViewController, ConverterDelegate {
             }
         }
     }
-
+    
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         converter.displayDelegate = self
@@ -54,13 +57,22 @@ class ConverterViewController: UIViewController, ConverterDelegate {
         refreshData()
     }
     
-    func displayErrorAlert(message: String) {
-        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-        let action = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
-        alert.addAction(action)
-        present(alert, animated: true, completion: nil)
+    // MARK: - IBAction Methods
+    @IBAction func pressSwitchButton(_ sender: UIButton) {
+        mode = (mode! == .dolToEur) ? .eurToDol : .dolToEur
     }
-        
+
+    @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
+        textField.resignFirstResponder()
+    }
+
+    @IBAction func convertButton(_ sender: UIButton) {
+        converter.convertValue(mode: mode, value: textField.text)
+    }
+}
+
+// MARK: - Private Methods
+private extension ConverterViewController {
     @objc func refreshData() {
         converter.fetchData { (success) -> (Void) in
             guard success else {
@@ -69,13 +81,17 @@ class ConverterViewController: UIViewController, ConverterDelegate {
             }
         }
     }
-    
-    func displayResult(_ text: String) {
-        resultatLabel.text = text
-    }
+}
+
+// MARK: - ConverterDelegate
+extension ConverterViewController: ConverterDelegate {
+    func displayResult(_ text: String) { resultatLabel.text = text }
     
     func displayError(_ text: String) {
-        displayErrorAlert(message: text)
+        let alert = UIAlertController(title: "Error", message: text, preferredStyle: .alert)
+        let action = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
     }
     
     func displayActivity(_ activity: Bool) {
@@ -89,21 +105,4 @@ class ConverterViewController: UIViewController, ConverterDelegate {
             loadingStackView.isHidden = true
         }
     }
-    
-    @IBAction func pressSwitchButton(_ sender: UIButton) {
-        if mode! == .dolToEur {
-            mode = .eurToDol
-        } else {
-            mode = .dolToEur
-        }
-    }
-
-    @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
-        textField.resignFirstResponder()
-    }
-        
-    @IBAction func convertButton(_ sender: UIButton) {
-        converter.convertValue(mode: mode, value: textField.text)
-    }    
-    
 }

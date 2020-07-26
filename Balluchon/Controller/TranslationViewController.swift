@@ -8,8 +8,9 @@
 
 import UIKit
 
-class TranslationViewController: UIViewController, UITextViewDelegate, TranslaterDelegate {
+class TranslationViewController: UIViewController {
     
+    // MARK: - IBOutlet Properties
     @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var textField: UITextView!
     @IBOutlet weak var translateButton: UIButton!
@@ -18,7 +19,9 @@ class TranslationViewController: UIViewController, UITextViewDelegate, Translate
     @IBOutlet weak var originLabel: UILabel!
     @IBOutlet weak var destinationLabel: UILabel!
     
-    let translater = Translater()
+    // MARK: - Properties
+    private let translater = Translater()
+    
     private var destinationLanguage: Translater.Language = .en {
         didSet {
             if destinationLanguage == .en {
@@ -33,6 +36,7 @@ class TranslationViewController: UIViewController, UITextViewDelegate, Translate
         }
     }
     
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         translater.displayDelegate = self
@@ -44,12 +48,43 @@ class TranslationViewController: UIViewController, UITextViewDelegate, Translate
         activityIndicator.stopAnimating()
     }
     
-    func displayResult(_ text: String) {
-        textFieldResult.text = text
+    // MARK: - IBAction Methods
+    @IBAction func translateButton(_ sender: UIButton) {
+        textField.resignFirstResponder()
+        translater.translate(text: textField.text, to: destinationLanguage) { (success) -> (Void) in
+            guard success else {
+                self.displayError("We were unable to translate the text")
+                return
+            }
+        }
     }
+
+    @IBAction func switchLanguageButton(_ sender: UIButton) {
+        destinationLanguage = (destinationLanguage == .en) ? .fr : .en
+        textField.resignFirstResponder()
+    }
+
+    @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
+        textField.resignFirstResponder()
+    }
+}
+
+// MARK: - UITextViewDelegate
+extension TranslationViewController: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        textField.text = String()
+    }
+}
+
+// MARK: - TranslaterDelegate
+extension TranslationViewController: TranslaterDelegate {
+    func displayResult(_ text: String) { textFieldResult.text = text }
     
     func displayError(_ text: String) {
-        displayAlert(text: text)
+        let alert = UIAlertController(title: "Error", message: text, preferredStyle: .alert)
+        let action = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
     }
     
     func displayActivity(_ activity: Bool) {
@@ -60,40 +95,5 @@ class TranslationViewController: UIViewController, UITextViewDelegate, Translate
             activityIndicator.stopAnimating()
             translateButton.isHidden = false
         }
-    }
-    
-    func displayAlert(text: String) {
-        let alert = UIAlertController(title: "Error", message: text, preferredStyle: .alert)
-        let action = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
-        alert.addAction(action)
-        present(alert, animated: true, completion: nil)
-    }
-    
-    @IBAction func translateButton(_ sender: UIButton) {
-        textField.resignFirstResponder()
-        translater.translate(text: textField.text, to: destinationLanguage) { (success) -> (Void) in
-            guard success else {
-                self.displayError("We were unable to translate the text")
-                return
-            }
-        }
-    }
-    
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        textField.text = String()
-    }
-    
-    @IBAction func switchLanguageButton(_ sender: UIButton) {
-        textFieldResult.text = ""
-        if destinationLanguage == .en {
-            destinationLanguage = .fr
-        } else {
-            destinationLanguage = .en
-        }
-        textField.resignFirstResponder()
-    }
-
-    @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
-        textField.resignFirstResponder()
     }
 }

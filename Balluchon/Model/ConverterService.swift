@@ -12,18 +12,31 @@ class ConverterService {
     // --- API KEY ---
     private let apiKey = valueForAPIKey(named:"ApiFixer")
     // --- --- --- ---
+    private let baseURL = "http://data.fixer.io/api/latest"
     private var session = URLSession(configuration: .default)
     private var task: URLSessionDataTask?
-    private init() {}
+    
+    /// This property sets the value ...
     static var shared = ConverterService()
+    
+    private init() {}
+    
+    /// Dependency injection
+    /// - Parameter session: You can inject a fake URLSession for unit tests.
     init(session: URLSession) {
         self.session = session
     }
     
-    func getCurrency(callback: @escaping(Bool, Currency?) -> (Void)) {
-        let baseURL = URL(string: "http://data.fixer.io/api/latest?access_key=\(apiKey)")!
+    /// This method will download to "fix.io" the most recent value of the monetary rates.
+    /// At the end of the task, it runs a closure which will have to process a "Currency" if it's a success.
+    /// - Parameters:
+    ///     - callback: The closure called after retrieval.
+    ///     - succes: Returns "true" if the retrive is a succes.
+    ///     - result: The retrieved "Currency".
+    func getCurrency(callback: @escaping(_ succes: Bool, _ result: Currency?) -> (Void)) {
+        let urlRequest = URL(string: "\(baseURL)?access_key=\(apiKey)")!
         task?.cancel()
-        task = session.dataTask(with: baseURL, completionHandler: { (data, response, error) in
+        task = session.dataTask(with: urlRequest, completionHandler: { (data, response, error) in
             DispatchQueue.main.async {
                 guard let data = data, error == nil else {
                     callback(false, nil)

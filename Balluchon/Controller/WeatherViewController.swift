@@ -8,7 +8,9 @@
 
 import UIKit
 
-class WeatherViewController: UIViewController, WeatherDelegate {
+class WeatherViewController: UIViewController {
+    
+    // MARK: - IBOutlet Properties
     @IBOutlet weak var firstCityImage: UIImageView!
     @IBOutlet weak var firstCityName: UILabel!
     @IBOutlet weak var firstCityTemperature: UILabel!
@@ -22,8 +24,11 @@ class WeatherViewController: UIViewController, WeatherDelegate {
     @IBOutlet weak var secondCityDescription: UILabel!
     @IBOutlet weak var secondCityBackground: UIView!
     @IBOutlet weak var secondCityActivityIndicator: UIActivityIndicatorView!
+    
+    // MARK: - Properties
     private let weather = Weather()
     
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         weather.displayDelegate = self
@@ -46,6 +51,10 @@ class WeatherViewController: UIViewController, WeatherDelegate {
         refreshData()
     }
         
+}
+
+// MARK: - Private Methods
+private extension WeatherViewController {
     @objc func refreshData() {
         weather.fetchData(cityID: .cityIDLamentin) { (success) -> (Void) in
             guard success else {
@@ -60,7 +69,10 @@ class WeatherViewController: UIViewController, WeatherDelegate {
             }
         }
     }
-    
+}
+
+// MARK: - WeatherDelegate
+extension WeatherViewController: WeatherDelegate {
     func displayResult(_ data: WeatherData) {
         switch data.cityID {
         case .cityIDLamentin :
@@ -110,5 +122,4 @@ class WeatherViewController: UIViewController, WeatherDelegate {
             }
         }
     }
-    
 }
