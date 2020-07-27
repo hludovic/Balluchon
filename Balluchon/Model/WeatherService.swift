@@ -8,19 +8,23 @@
 
 import Foundation
 
+/// This class retrieves weather data using the openweathermap api.
 class WeatherService {
     // --- API KEY ---
     private let apiKey = valueForAPIKey(named: "ApiOpenWeather")
     // --- --- --- ---
     private let baseURL = "https://api.openweathermap.org/data/2.5/weather"
-    private var session = URLSession(configuration: .default)
+    private var weatherSession = URLSession(configuration: .default)
+    private var imageSession = URLSession(configuration: .default)
     private var task: URLSessionDataTask?
     
     /// Dependency injection
-    /// - Parameter session: You can inject a fake URLSession for unit tests.
-    convenience init(session: URLSession) {
+    /// - Parameter weatherSession: You can inject a fake URLSession for unit tests.
+    /// - Parameter imageSession: You can inject a fake URLSession for unit tests.
+    convenience init(weatherSession: URLSession, imageSession: URLSession) {
         self.init()
-        self.session = session
+        self.weatherSession = weatherSession
+        self.imageSession = imageSession
     }
     
     /// This method retrieves weather data on ApiOpenWeather.
@@ -33,7 +37,7 @@ class WeatherService {
     func getWeather(cityID: String, callback: @escaping (_ success: Bool, _ result: WeatherResult?, _ icon: Data?) -> (Void)) {
         let urlRequest = URL(string: "\(baseURL)?id=\(cityID)&units=metric&appid=\(apiKey)")!
         task?.cancel()
-        task = session.dataTask(with: urlRequest, completionHandler: { (data, response, error) in
+        task = weatherSession.dataTask(with: urlRequest, completionHandler: { (data, response, error) in
             DispatchQueue.main.async {
                 guard let data = data, error == nil else {
                     callback(false, nil, nil)
@@ -59,18 +63,18 @@ class WeatherService {
         task?.resume()
     }
     
-    private func getIcon(id: String, completion: @escaping (Data?) -> (Void)) {
+    func getIcon(id: String, completion: @escaping (Data?) -> (Void)) {
         let urlRequest = URL(string: "https://openweathermap.org/img/w/\(id).png")!
         task?.cancel()
-        task = session.dataTask(with: urlRequest, completionHandler: { (data, response, error) in
+        task = imageSession.dataTask(with: urlRequest, completionHandler: { (data, response, error) in
             DispatchQueue.main.async {
                 guard let data = data, error == nil else {
-                    print("ERROR")
+                    print("ERROR >>>>>>>>>>>")
                     completion(nil)
                     return
                 }
                 guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-                    print("ERROR")
+                    print("ERROR <<<<<<<<<<<<<")
                     completion(nil)
                     return
                 }

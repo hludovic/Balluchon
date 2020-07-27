@@ -10,10 +10,10 @@ import XCTest
 @testable import Balluchon
 
 class WeatherTestCase: XCTestCase {
-    func testWeather_ONLINE_Success() {
+    
+    func testFetchDataWhen_ONLINE_ThenTheResultIsSuccess() {
         let weather = Weather()
-        
-        let expectation = XCTestExpectation(description: "wait")
+        let expectation = XCTestExpectation(description: "Wait for queue change.")
         weather.fetchData(cityID: .cityIDLamentin) { (success) -> (Void) in
             expectation.fulfill()
         }
@@ -21,4 +21,16 @@ class WeatherTestCase: XCTestCase {
         
         XCTAssertEqual(weather.weatherData?.cityName, "Lamentin")
     }
+    
+//    func testFetchDataWhen_OFFLINE_ThenDisplayErrorMessage() {
+//        let weather = Weather()
+//        let expectation = XCTestExpectation(description: "Wait for queue change.")
+//        weather.fetchData(cityID: .cityIDLamentin) { (success) -> (Void) in
+//            expectation.fulfill()
+//        }
+//        wait(for: [expectation], timeout: 5.0)
+//
+//        XCTAssertEqual(weather.errorMessage, "We were unable to recover the data")
+//    }
+
 }

@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// This class is a singleton. It gets the money rates from the API of "fix.io".
 class ConverterService {
     // --- API KEY ---
     private let apiKey = valueForAPIKey(named:"ApiFixer")

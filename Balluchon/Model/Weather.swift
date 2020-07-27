@@ -56,12 +56,8 @@ class Weather {
                 completion(false)
                 return
             }
-            guard let temperature = Int(exactly: result.main.feels_like.rounded()) else {
-                self.isLoading = (false, cityID)
-                self.errorMessage = "Temperature data is not good"
-                completion(false)
-                return
-            }
+            
+            let temperature = Int(result.main.feels_like.rounded())
             self.weatherData = WeatherData(cityID: cityID,
                                           cityName: result.name,
                                           cityImageData: imageData,

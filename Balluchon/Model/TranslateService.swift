@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// This class is a singleton. It translates text using the API of google translate.
 class TranslateService {
     // --- API KEY ---
     private let apiKey = valueForAPIKey(named:"ApiGoogleTtranslate")

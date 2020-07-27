@@ -1,41 +1,41 @@
 {
   "base" : "stations",
   "id" : 3579023,
-  "dt" : 1595103949,
+  "dt" : 1595806420,
   "main" : {
-    "temp_max" : 303.14999999999998,
-    "humidity" : 66,
-    "feels_like" : 304.79000000000002,
-    "temp_min" : 303.14999999999998,
-    "temp" : 303.14999999999998,
-    "pressure" : 1012
+    "temp_max" : 28,
+    "humidity" : 74,
+    "feels_like" : 31.030000000000001,
+    "temp_min" : 28,
+    "temp" : 28,
+    "pressure" : 1015
   },
   "coord" : {
     "lon" : -61.630000000000003,
     "lat" : 16.27
   },
   "wind" : {
-    "speed" : 5.0999999999999996,
-    "deg" : 130
+    "speed" : 3.1000000000000001,
+    "deg" : 50
   },
   "sys" : {
     "id" : 8780,
     "country" : "GP",
-    "sunset" : 1595112115,
+    "sunset" : 1595803203,
     "type" : 1,
-    "sunrise" : 1595065394
+    "sunrise" : 1595756745
   },
   "weather" : [
     {
-      "id" : 803,
+      "id" : 801,
       "main" : "Clouds",
-      "icon" : "04d",
-      "description" : "broken clouds"
+      "icon" : "02n",
+      "description" : "few clouds"
     }
   ],
   "visibility" : 10000,
   "clouds" : {
-    "all" : 75
+    "all" : 20
   },
   "timezone" : -14400,
   "cod" : 200,

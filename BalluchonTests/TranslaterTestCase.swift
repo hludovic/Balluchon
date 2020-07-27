@@ -42,7 +42,7 @@ class TranslaterTestCase: XCTestCase {
         XCTAssertNil(translater.errorMessage)
     }
     
-//    func testTranslatingWhen_OFFLINE_ThenTheDisplayErrorMessage() {
+//    func testTranslatingWhen_OFFLINE_ThenDisplayErrorMessage() {
 //        let translater = Translater()
 //        
 //        let expectation = XCTestExpectation(description: "Wait for queue change.")
