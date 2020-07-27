@@ -16,14 +16,26 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var firstCityTemperature: UILabel!
     @IBOutlet weak var firstCityDescription: UILabel!
     @IBOutlet weak var FirstCityBackground: UIView!
-    @IBOutlet weak var firstCityActivityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var firstCityActivityIndicator: UIActivityIndicatorView! {
+        didSet {
+            if #available(iOS 13.0, *) {
+                firstCityActivityIndicator.style = .medium
+            }
+        }
+    }
     
     @IBOutlet weak var secondCityImage: UIImageView!
     @IBOutlet weak var secondCityName: UILabel!
     @IBOutlet weak var secondCityTemperature: UILabel!
     @IBOutlet weak var secondCityDescription: UILabel!
     @IBOutlet weak var secondCityBackground: UIView!
-    @IBOutlet weak var secondCityActivityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var secondCityActivityIndicator: UIActivityIndicatorView! {
+        didSet {
+            if #available(iOS 13.0, *) {
+                firstCityActivityIndicator.style = .medium
+            }
+        }
+    }
     
     // MARK: - Properties
     private let weather = Weather()

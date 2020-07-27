@@ -15,7 +15,13 @@ class TranslationViewController: UIViewController {
     @IBOutlet weak var textField: UITextView!
     @IBOutlet weak var translateButton: UIButton!
     @IBOutlet weak var textFieldResult: UITextView!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView! {
+        didSet {
+            if #available(iOS 13.0, *) {
+                activityIndicator.style = .medium
+            }
+        }
+    }
     @IBOutlet weak var originLabel: UILabel!
     @IBOutlet weak var destinationLabel: UILabel!
     
@@ -45,7 +51,6 @@ class TranslationViewController: UIViewController {
         textField.layer.cornerRadius = 10
         translateButton.layer.cornerRadius = 10
         textFieldResult.layer.cornerRadius = 10
-        activityIndicator.stopAnimating()
     }
     
     // MARK: - IBAction Methods
