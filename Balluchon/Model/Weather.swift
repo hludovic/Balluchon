@@ -35,7 +35,7 @@ class Weather {
         didSet { displayDelegate?.displayResult(weatherData!) }
     }
 
-    /// This property may or may not indicate loading activity.
+    /// This tuple property may or may not indicate loading activity of a city.
     private(set) var isLoading: (activity: Bool, city: Weather.City)? {
         willSet { displayDelegate?.displayActivity(activity: newValue!.activity, cityID: newValue!.city)
         }
