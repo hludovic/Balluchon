@@ -9,7 +9,7 @@
 import UIKit
 
 class TranslationViewController: UIViewController {
-    
+
     // MARK: - IBOutlet Properties
     @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var textField: UITextView!
@@ -24,10 +24,10 @@ class TranslationViewController: UIViewController {
     }
     @IBOutlet weak var originLabel: UILabel!
     @IBOutlet weak var destinationLabel: UILabel!
-    
+
     // MARK: - Properties
     private let translater = Translater()
-    
+
     private var destinationLanguage: Translater.Language = .en {
         didSet {
             if destinationLanguage == .en {
@@ -41,7 +41,7 @@ class TranslationViewController: UIViewController {
             }
         }
     }
-    
+
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,11 +52,11 @@ class TranslationViewController: UIViewController {
         translateButton.layer.cornerRadius = 10
         textFieldResult.layer.cornerRadius = 10
     }
-    
+
     // MARK: - IBAction Methods
     @IBAction func translateButton(_ sender: UIButton) {
         textField.resignFirstResponder()
-        translater.translate(text: textField.text, to: destinationLanguage) { (success) -> (Void) in
+        translater.translate(text: textField.text, to: destinationLanguage) { (success) -> Void in
             guard success else {
                 self.displayError("We were unable to translate the text")
                 return
@@ -84,14 +84,14 @@ extension TranslationViewController: UITextViewDelegate {
 // MARK: - TranslaterDelegate
 extension TranslationViewController: TranslaterDelegate {
     func displayResult(_ text: String) { textFieldResult.text = text }
-    
+
     func displayError(_ text: String) {
         let alert = UIAlertController(title: "Error", message: text, preferredStyle: .alert)
         let action = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
         alert.addAction(action)
         present(alert, animated: true, completion: nil)
     }
-    
+
     func displayActivity(_ activity: Bool) {
         if activity {
             activityIndicator.startAnimating()

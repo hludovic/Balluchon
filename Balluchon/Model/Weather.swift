@@ -18,45 +18,45 @@ protocol WeatherDelegate: AnyObject {
 /// This class retrieves and displays weather data.
 class Weather {
     weak var displayDelegate: WeatherDelegate?
-    
+
     /// Lists of two citys id that can be performed with a Weather.
     enum City: String {
         case cityIDLamentin = "3579023"
         case cityIDNewYork = "5128581"
     }
-    
+
     /// This property sets the value of the error message that should be displayed.
     private(set) var errorMessage: String? {
         didSet { displayDelegate?.displayError(errorMessage!) }
     }
-    
+
     /// This property sets the value of the data that should be displayed.
     private(set) var weatherData: WeatherData? {
         didSet { displayDelegate?.displayResult(weatherData!) }
     }
-    
+
     /// This property may or may not indicate loading activity.
     private(set) var isLoading: (activity: Bool, city: Weather.City)? {
         willSet { displayDelegate?.displayActivity(activity: newValue!.activity, cityID: newValue!.city)
         }
     }
-    
+
     /// This function retrieves and displays the value of the weather. Displays also an animation during this operation.
     /// - Parameters:
     ///   - cityID: The id of the city from which we'd like to retrieve the weather data.
     ///   - completion: The closure called after retrieval.
     ///   - success: Returns "true" if the recovery is a success.
-    func fetchData(cityID: City, completion: @escaping (_ success: Bool) -> (Void)) {
+    func fetchData(cityID: City, completion: @escaping (_ success: Bool) -> Void) {
         self.isLoading = (true, cityID)
         let weatherService = WeatherService()
-        weatherService.getWeather(cityID: cityID.rawValue) { (success, result, imageData) -> (Void) in
+        weatherService.getWeather(cityID: cityID.rawValue) { (success, result, imageData) -> Void in
             guard success, let result = result, let imageData = imageData else {
                 self.isLoading = (false, cityID)
                 self.errorMessage = "We were unable to recover the data"
                 completion(false)
                 return
             }
-            
+
             let temperature = Int(result.main.feels_like.rounded())
             self.weatherData = WeatherData(cityID: cityID,
                                           cityName: result.name,

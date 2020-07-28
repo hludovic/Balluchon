@@ -10,14 +10,14 @@ import XCTest
 @testable import Balluchon
 
 class ConverterServiceTestCase: XCTestCase {
-    
+
     func testConverterServiceShouldPostFailedCallbackIfNoData() {
         // Given
         let session = FakeURLSession(data: nil, response: nil, error: nil)
         let converterService = ConverterService(session: session)
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         // When
-        converterService.getCurrency { (response, currency) -> (Void) in
+        converterService.getCurrency { (response, currency) -> Void in
             // Then
             XCTAssertFalse(response)
             XCTAssertNil(currency)
@@ -25,14 +25,14 @@ class ConverterServiceTestCase: XCTestCase {
         }
         wait(for: [expectation], timeout: 0.1)
     }
-    
+
     func testConverterServiceShouldPostFailedCallbackIfIncorrectResponse() {
         // Given
         let session = FakeURLSession(data: FakeResponseData.correctCurrencyData, response: FakeResponseData.responseKO, error: nil)
         let converterService = ConverterService(session: session)
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         // When
-        converterService.getCurrency { (response, currency) -> (Void) in
+        converterService.getCurrency { (response, currency) -> Void in
             // Then
             XCTAssertFalse(response)
             XCTAssertNil(currency)
@@ -40,14 +40,14 @@ class ConverterServiceTestCase: XCTestCase {
         }
         wait(for: [expectation], timeout: 0.1)
     }
-    
+
     func testConverterServiceShouldPostFailedCallbackIfIncorrectData() {
         // Given
         let session = FakeURLSession(data: FakeResponseData.incorrectData, response: FakeResponseData.responseOK, error: nil)
         let converterService = ConverterService(session: session)
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         // When
-        converterService.getCurrency { (response, currency) -> (Void) in
+        converterService.getCurrency { (response, currency) -> Void in
             // Then
             XCTAssertFalse(response)
             XCTAssertNil(currency)
@@ -55,14 +55,14 @@ class ConverterServiceTestCase: XCTestCase {
         }
         wait(for: [expectation], timeout: 0.1)
     }
-    
+
     func testConverterServiceShouldPostFailedCallbackIfError() {
         // Given
         let session = FakeURLSession(data: nil, response: nil, error: FakeResponseData.error)
         let converterService = ConverterService(session: session)
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         // When
-        converterService.getCurrency { (response, currency) -> (Void) in
+        converterService.getCurrency { (response, currency) -> Void in
             // Then
             XCTAssertFalse(response)
             XCTAssertNil(currency)
@@ -70,14 +70,14 @@ class ConverterServiceTestCase: XCTestCase {
         }
         wait(for: [expectation], timeout: 0.1)
     }
-    
+
     func testConverterServiceShouldPostSuccessCallbackIfNoErrorAndCorrectData() {
         // Given
         let session = FakeURLSession(data: FakeResponseData.correctCurrencyData, response: FakeResponseData.responseOK, error: nil)
         let converterService = ConverterService(session: session)
         let expectation = XCTestExpectation(description: "Wait queue")
         // When
-        converterService.getCurrency { (response, currency) -> (Void) in
+        converterService.getCurrency { (response, currency) -> Void in
             // Then
             XCTAssertEqual(1.1384920000000001, currency!.rates.USD)
             XCTAssertTrue(response)

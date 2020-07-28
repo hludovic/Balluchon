@@ -9,7 +9,7 @@
 import UIKit
 
 class ConverterViewController: UIViewController {
-    
+
     // MARK: - IBOutlet Properties
     @IBOutlet weak var destinationLabel: UILabel!
     @IBOutlet weak var originLabel: UILabel!
@@ -22,7 +22,7 @@ class ConverterViewController: UIViewController {
 
     // MARK: - Properties
     private let converter = Converter()
-    
+
     private var mode: Converter.Mode? {
         didSet {
             if mode == .dolToEur {
@@ -36,13 +36,13 @@ class ConverterViewController: UIViewController {
             }
         }
     }
-    
+
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         converter.displayDelegate = self
         mode = .dolToEur
-        
+
         let refreshButton = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshData))
         navigationItem.rightBarButtonItem = refreshButton
 
@@ -53,10 +53,10 @@ class ConverterViewController: UIViewController {
         backgroundConvert.layer.shadowRadius = 3
         backgroundConvert.layer.shadowOpacity = 0.5
         convertButton.layer.cornerRadius = 10
-        
+
         refreshData()
     }
-    
+
     // MARK: - IBAction Methods
     @IBAction func pressSwitchButton(_ sender: UIButton) {
         mode = (mode! == .dolToEur) ? .eurToDol : .dolToEur
@@ -75,7 +75,7 @@ class ConverterViewController: UIViewController {
 // MARK: - Private Methods
 private extension ConverterViewController {
     @objc func refreshData() {
-        converter.fetchData { (success) -> (Void) in
+        converter.fetchData { (success) -> Void in
             guard success else {
                 self.displayError("We were unable to refresh the data")
                 return
@@ -98,14 +98,14 @@ extension ConverterViewController: UITextFieldDelegate {
 // MARK: - ConverterDelegate
 extension ConverterViewController: ConverterDelegate {
     func displayResult(_ text: String) { resultatLabel.text = text }
-    
+
     func displayError(_ text: String) {
         let alert = UIAlertController(title: "Error", message: text, preferredStyle: .alert)
         let action = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
         alert.addAction(action)
         present(alert, animated: true, completion: nil)
     }
-    
+
     func displayActivity(_ activity: Bool) {
         if activity {
             convertButton.isEnabled = false

@@ -17,7 +17,7 @@ class WeatherService {
     private var weatherSession = URLSession(configuration: .default)
     private var imageSession = URLSession(configuration: .default)
     private var task: URLSessionDataTask?
-    
+
     /// Dependency injection
     /// - Parameter weatherSession: You can inject a fake URLSession for unit tests.
     /// - Parameter imageSession: You can inject a fake URLSession for unit tests.
@@ -26,7 +26,7 @@ class WeatherService {
         self.weatherSession = weatherSession
         self.imageSession = imageSession
     }
-    
+
     /// This method retrieves weather data on ApiOpenWeather.
     /// - Parameters:
     ///   - cityID: The id of the city from which we'd like to retrieve the weather data.
@@ -34,7 +34,7 @@ class WeatherService {
     ///   - success: Returns "true" if the retrive is a succes.
     ///   - result: The retrieved "WeatherResult".
     ///   - icon: The retrieved weather illustration.
-    func getWeather(cityID: String, callback: @escaping (_ success: Bool, _ result: WeatherResult?, _ icon: Data?) -> (Void)) {
+    func getWeather(cityID: String, callback: @escaping (_ success: Bool, _ result: WeatherResult?, _ icon: Data?) -> Void) {
         let urlRequest = URL(string: "\(baseURL)?id=\(cityID)&units=metric&appid=\(apiKey)")!
         task?.cancel()
         task = weatherSession.dataTask(with: urlRequest, completionHandler: { (data, response, error) in
@@ -51,7 +51,7 @@ class WeatherService {
                     callback(false, nil, nil)
                     return
                 }
-                self.getIcon(id: responseJSON.weather[0].icon) { (data) -> (Void) in
+                self.getIcon(id: responseJSON.weather[0].icon) { (data) -> Void in
                     guard let data = data else {
                         callback(false, nil, nil)
                         return
@@ -62,19 +62,17 @@ class WeatherService {
         })
         task?.resume()
     }
-    
-    func getIcon(id: String, completion: @escaping (Data?) -> (Void)) {
+
+    func getIcon(id: String, completion: @escaping (Data?) -> Void) {
         let urlRequest = URL(string: "https://openweathermap.org/img/w/\(id).png")!
         task?.cancel()
         task = imageSession.dataTask(with: urlRequest, completionHandler: { (data, response, error) in
             DispatchQueue.main.async {
                 guard let data = data, error == nil else {
-                    print("ERROR >>>>>>>>>>>")
                     completion(nil)
                     return
                 }
                 guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-                    print("ERROR <<<<<<<<<<<<<")
                     completion(nil)
                     return
                 }

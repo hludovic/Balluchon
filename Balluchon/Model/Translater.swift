@@ -17,33 +17,33 @@ protocol TranslaterDelegate: AnyObject {
 
 /// This class tests and performs translations, and delegates the display of its results.
 class Translater {
-    weak var displayDelegate: TranslaterDelegate?    
-    
+    weak var displayDelegate: TranslaterDelegate?
+
     /// Lists all kind of translations languages that can be performed with a Translater.
     enum Language: String { case en = "en", fr = "fr" }
-    
+
     /// This property sets the value of the error message that should be displayed.
     private(set) var errorMessage: String? {
         didSet { displayDelegate?.displayError(errorMessage!) }
     }
-    
+
     /// This property sets the value of the result message that should be displayed.
     private(set) var resultMessage: Translation? {
         didSet { displayDelegate?.displayResult(resultMessage!.data.translations[0].translatedText) }
     }
-    
+
     /// This property may or may not indicate loading activity.
     private(set) var isLoading: Bool? {
         didSet { displayDelegate?.displayActivity(isLoading!) }
     }
-    
+
     /// This method translates text and displays an animation during this operation.
     /// - Parameters:
     ///   - text: The text to be translated.
     ///   - to: the target language.
     ///   - completion: The closure called after retrieval.
     ///   - success: Returns "true" if the translation is a succes.
-    func translate(text: String?, to: Language?, completion: @escaping (_ success: Bool) -> (Void)) {
+    func translate(text: String?, to: Language?, completion: @escaping (_ success: Bool) -> Void) {
         guard let to = to else {
             errorMessage = "There is no information on the language of origin or destination."
             completion(false)
@@ -58,7 +58,7 @@ class Translater {
             return to == .en ? .fr : .en
         }
         isLoading = true
-        TranslateService.shared.translate(from: from, to: to, text: text) { (success, result) -> (Void) in
+        TranslateService.shared.translate(from: from, to: to, text: text) { (success, result) -> Void in
             guard success, let result = result else {
                 self.errorMessage = "The text could not be translated."
                 self.isLoading =  false

@@ -9,13 +9,13 @@
 import UIKit
 
 class WeatherViewController: UIViewController {
-    
+
     // MARK: - IBOutlet Properties
     @IBOutlet weak var firstCityImage: UIImageView!
     @IBOutlet weak var firstCityName: UILabel!
     @IBOutlet weak var firstCityTemperature: UILabel!
     @IBOutlet weak var firstCityDescription: UILabel!
-    @IBOutlet weak var FirstCityBackground: UIView!
+    @IBOutlet weak var firstCityBackground: UIView!
     @IBOutlet weak var firstCityActivityIndicator: UIActivityIndicatorView! {
         didSet {
             if #available(iOS 13.0, *) {
@@ -23,7 +23,7 @@ class WeatherViewController: UIViewController {
             }
         }
     }
-    
+
     @IBOutlet weak var secondCityImage: UIImageView!
     @IBOutlet weak var secondCityName: UILabel!
     @IBOutlet weak var secondCityTemperature: UILabel!
@@ -36,45 +36,45 @@ class WeatherViewController: UIViewController {
             }
         }
     }
-    
+
     // MARK: - Properties
     private let weather = Weather()
-    
+
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         weather.displayDelegate = self
-        
+
         let refreshButton = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshData))
         navigationItem.rightBarButtonItem = refreshButton
-        
-        FirstCityBackground.layer.cornerRadius = 10
-        FirstCityBackground.layer.shadowColor = UIColor.black.cgColor
-        FirstCityBackground.layer.shadowOffset = .zero
-        FirstCityBackground.layer.shadowRadius = 3
-        FirstCityBackground.layer.shadowOpacity = 0.5
+
+        firstCityBackground.layer.cornerRadius = 10
+        firstCityBackground.layer.shadowColor = UIColor.black.cgColor
+        firstCityBackground.layer.shadowOffset = .zero
+        firstCityBackground.layer.shadowRadius = 3
+        firstCityBackground.layer.shadowOpacity = 0.5
 
         secondCityBackground.layer.cornerRadius = 10
         secondCityBackground.layer.shadowColor = UIColor.black.cgColor
         secondCityBackground.layer.shadowOffset = .zero
         secondCityBackground.layer.shadowRadius = 3
         secondCityBackground.layer.shadowOpacity = 0.5
-        
+
         refreshData()
     }
-        
+
 }
 
 // MARK: - Private Methods
 private extension WeatherViewController {
     @objc func refreshData() {
-        weather.fetchData(cityID: .cityIDLamentin) { (success) -> (Void) in
+        weather.fetchData(cityID: .cityIDLamentin) { (success) -> Void in
             guard success else {
                 self.displayError("We could not retrieve data from the first city")
                 return
             }
         }
-        weather.fetchData(cityID: .cityIDNewYork) { (success) -> (Void) in
+        weather.fetchData(cityID: .cityIDNewYork) { (success) -> Void in
             guard success else {
                 self.displayError("We could not retrieve data from the second city")
                 return
@@ -99,13 +99,13 @@ extension WeatherViewController: WeatherDelegate {
             self.secondCityTemperature.text = data.cityTemperature
         }
     }
-    
+
     func displayError(_ text: String) {
         let alert = UIAlertController(title: "Error", message: text, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         present(alert, animated: true, completion: nil)
     }
-    
+
     func displayActivity(activity: Bool, cityID: Weather.City) {
         switch cityID {
         case .cityIDLamentin:

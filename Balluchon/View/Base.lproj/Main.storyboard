@@ -312,8 +312,8 @@
                     </view>
                     <navigationItem key="navigationItem" title="Weather conditions" id="JYK-0T-etJ"/>
                     <connections>
-                        <outlet property="FirstCityBackground" destination="UNj-2k-CfH" id="f8e-4e-YiS"/>
                         <outlet property="firstCityActivityIndicator" destination="tQk-g7-F4d" id="Z48-g2-2lZ"/>
+                        <outlet property="firstCityBackground" destination="UNj-2k-CfH" id="f8e-4e-YiS"/>
                         <outlet property="firstCityDescription" destination="vbf-Rn-lQw" id="QOX-S8-wDd"/>
                         <outlet property="firstCityImage" destination="u1t-vc-wup" id="88l-Kl-bi0"/>
                         <outlet property="firstCityName" destination="I49-2a-dGa" id="6X6-15-Nah"/>

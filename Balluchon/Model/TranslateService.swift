@@ -11,23 +11,23 @@ import Foundation
 /// This class is a singleton. It translates text using the API of google translate.
 class TranslateService {
     // --- API KEY ---
-    private let apiKey = valueForAPIKey(named:"ApiGoogleTtranslate")
+    private let apiKey = valueForAPIKey(named: "ApiGoogleTtranslate")
     // --- --- --- ---
     private let baseURL = URL(string: "https://translation.googleapis.com/language/translate/v2")!
     private var session = URLSession(configuration: .default)
     private var task: URLSessionDataTask?
-    
+
     /// This property is the only "TranslateService" session available.
     static var shared = TranslateService()
-    
+
     private init() {}
-    
+
     /// Dependency injection
     /// - Parameter session: You can inject a fake URLSession for unit tests.
     init(session: URLSession) {
         self.session = session
     }
-    
+
     /// The method will translate text with a google api.
     /// - Parameters:
     ///   - from: The language of the original text
@@ -37,7 +37,7 @@ class TranslateService {
     ///   - success: Returns "true" if the retrive is a succes.
     ///   - result: The retrieved "Translation".
     func translate(from: Translater.Language, to: Translater.Language, text: String,
-                   callback: @escaping (_ success: Bool, _ result: Translation?) -> (Void)) {
+                   callback: @escaping (_ success: Bool, _ result: Translation?) -> Void) {
         var request = URLRequest(url: baseURL)
         request.httpMethod = "POST"
         request.httpBody = "key=\(apiKey)&source=\(from.rawValue)&q=\(text)&target=\(to.rawValue)&\(from)&source&format=text".data(using: .utf8)
