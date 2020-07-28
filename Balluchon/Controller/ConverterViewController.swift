@@ -68,6 +68,7 @@ class ConverterViewController: UIViewController {
 
     @IBAction func convertButton(_ sender: UIButton) {
         converter.convertValue(mode: mode, value: textField.text)
+        textField.resignFirstResponder()
     }
 }
 
@@ -80,6 +81,17 @@ private extension ConverterViewController {
                 return
             }
         }
+    }
+}
+
+// MARK: - UITextFieldDelegate
+extension ConverterViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if string == "," {
+            textField.text = textField.text! + "."
+            return false
+        }
+        return true
     }
 }
 
