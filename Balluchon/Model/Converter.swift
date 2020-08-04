@@ -53,7 +53,7 @@ class Converter {
         isLoading = true
         ConverterService.shared.getCurrency { (success, currency) -> Void in
             guard success, let currency = currency else {
-                self.displayDelegate?.displayError("The data could not be downloaded")
+                self.errorMessage = "The data could not be downloaded"
                 self.isLoading = false
                 completion(false)
                 return
@@ -81,15 +81,15 @@ class Converter {
             errorMessage = "We haven't received the number to convert."
             return
         }
-        guard let valueDouble = Double(value) else {
+        guard let valueFloat = Float(value) else {
             errorMessage = "You didn't enter a number"
             return
         }
         switch mode {
         case .dolToEur:
-            resultMessage = String(format: "%.2f €", (valueDouble / currency.rates.USD))
+            resultMessage = String(format: "%.2f €", (valueFloat / currency.rates["USD"]!))
         case .eurToDol:
-            resultMessage = String(format: "%.2f $", (currency.rates.USD * valueDouble))
+            resultMessage = String(format: "%.2f $", (currency.rates["USD"]! * valueFloat))
         }
     }
 }
@@ -100,8 +100,5 @@ struct Currency: Codable {
     var timestamp: Int
     var base: String
     var date: String
-    struct Rates: Codable {
-        var USD: Double
-    }
-    var rates: Rates
+    let rates: [String: Float]
 }

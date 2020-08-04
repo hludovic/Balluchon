@@ -79,7 +79,7 @@ class ConverterServiceTestCase: XCTestCase {
         // When
         converterService.getCurrency { (response, currency) -> Void in
             // Then
-            XCTAssertEqual(1.1384920000000001, currency!.rates.USD)
+            XCTAssertEqual(1.1384920000000001, currency!.rates["USD"])
             XCTAssertTrue(response)
             XCTAssertNotNil(currency)
             expectation.fulfill()

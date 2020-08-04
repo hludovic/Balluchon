@@ -15,7 +15,7 @@ class ConverterTestCase: XCTestCase {
 
     override func setUp() {
         super .setUp()
-        currency = Currency(success: true, timestamp: 1594953785, base: "EUR", date: "2020-07-17", rates: Currency.Rates.init(USD: 1.1384920000000001))
+        currency = Currency(success: true, timestamp: 1594953785, base: "EUR", date: "2020-07-17", rates: ["USD" : 1.1384920000000001])
         converter = Converter(currency: currency)
     }
 
