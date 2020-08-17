@@ -77,28 +77,37 @@ class TranslationViewController: UIViewController {
 // MARK: - UITextViewDelegate
 extension TranslationViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
-        textField.text = String()
+        DispatchQueue.main.async {
+            self.textField.text = String()
+        }
     }
 }
 
 // MARK: - TranslaterDelegate
 extension TranslationViewController: TranslaterDelegate {
-    func displayResult(_ text: String) { textFieldResult.text = text }
+    func displayResult(_ text: String) {
+        DispatchQueue.main.async { self.textFieldResult.text = text }
+    }
 
     func displayError(_ text: String) {
         let alert = UIAlertController(title: "Error", message: text, preferredStyle: .alert)
         let action = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
         alert.addAction(action)
-        present(alert, animated: true, completion: nil)
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+        }
     }
 
     func displayActivity(_ activity: Bool) {
-        if activity {
-            activityIndicator.startAnimating()
-            translateButton.isHidden = true
-        } else {
-            activityIndicator.stopAnimating()
-            translateButton.isHidden = false
+        DispatchQueue.main.async {
+            if activity {
+                self.activityIndicator.startAnimating()
+                self.translateButton.isHidden = true
+            } else {
+                self.activityIndicator.stopAnimating()
+                self.translateButton.isHidden = false
+            }
         }
     }
+    
 }

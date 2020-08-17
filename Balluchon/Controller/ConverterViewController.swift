@@ -26,13 +26,13 @@ class ConverterViewController: UIViewController {
     private var mode: Converter.Mode? {
         didSet {
             if mode == .dolToEur {
-                originLabel.text = "Dollards"
+                originLabel.text = "Dollars"
                 destinationLabel.text = "Euros"
-                textField.placeholder = "€"
+                textField.placeholder = "$"
             } else {
                 originLabel.text = "Euros"
-                destinationLabel.text = "Dollards"
-                textField.placeholder = "$"
+                destinationLabel.text = "Dollars"
+                textField.placeholder = "€"
             }
         }
     }
@@ -97,24 +97,31 @@ extension ConverterViewController: UITextFieldDelegate {
 
 // MARK: - ConverterDelegate
 extension ConverterViewController: ConverterDelegate {
-    func displayResult(_ text: String) { resultatLabel.text = text }
+    func displayResult(_ text: String) {
+        DispatchQueue.main.async { self.resultatLabel.text = text }
+    }
 
     func displayError(_ text: String) {
         let alert = UIAlertController(title: "Error", message: text, preferredStyle: .alert)
         let action = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
         alert.addAction(action)
-        present(alert, animated: true, completion: nil)
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+        }
     }
 
     func displayActivity(_ activity: Bool) {
-        if activity {
-            convertButton.isEnabled = false
-            textField.isEnabled = false
-            loadingStackView.isHidden = false
-        } else {
-            convertButton.isEnabled = true
-            textField.isEnabled = true
-            loadingStackView.isHidden = true
+        DispatchQueue.main.async {
+            if activity {
+                self.convertButton.isEnabled = false
+                self.textField.isEnabled = false
+                self.loadingStackView.isHidden = false
+            } else {
+                self.convertButton.isEnabled = true
+                self.textField.isEnabled = true
+                self.loadingStackView.isHidden = true
+            }
         }
     }
+    
 }

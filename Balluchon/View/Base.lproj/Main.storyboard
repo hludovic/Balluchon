@@ -386,23 +386,23 @@
                                 <rect key="frame" x="20" y="128" width="374" height="35"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="45" translatesAutoresizingMaskIntoConstraints="NO" id="wMu-1E-SeX">
-                                        <rect key="frame" x="81" y="6.5" width="212.5" height="22"/>
+                                        <rect key="frame" x="86" y="6.5" width="202.5" height="22"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dollards" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U2R-h8-r15">
-                                                <rect key="frame" x="0.0" y="0.0" width="63" height="22"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dollars" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U2R-h8-r15">
+                                                <rect key="frame" x="0.0" y="0.0" width="53" height="22"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ppd-9z-eWu">
-                                                <rect key="frame" x="108" y="0.0" width="16" height="22"/>
+                                                <rect key="frame" x="98" y="0.0" width="16" height="22"/>
                                                 <state key="normal" image="arrow.right.arrow.left"/>
                                                 <connections>
                                                     <action selector="pressSwitchButton:" destination="Jv4-Tl-u9S" eventType="touchUpInside" id="gST-et-Eb1"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Euros" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Y6-Yw-cuO">
-                                                <rect key="frame" x="169" y="0.0" width="43.5" height="22"/>
+                                                <rect key="frame" x="159" y="0.0" width="43.5" height="22"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>

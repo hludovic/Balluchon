@@ -38,26 +38,24 @@ class WeatherService {
         let urlRequest = URL(string: "\(baseURL)?id=\(cityID)&units=metric&appid=\(apiKey)")!
         task?.cancel()
         task = weatherSession.dataTask(with: urlRequest, completionHandler: { (data, response, error) in
-            DispatchQueue.main.async {
-                guard let data = data, error == nil else {
+            guard let data = data, error == nil else {
+                callback(false, nil, nil)
+                return
+            }
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                callback(false, nil, nil)
+                return
+            }
+            guard let responseJSON = try? JSONDecoder().decode(WeatherResult.self, from: data) else {
+                callback(false, nil, nil)
+                return
+            }
+            self.getIcon(id: responseJSON.weather[0].icon) { (data) -> Void in
+                guard let data = data else {
                     callback(false, nil, nil)
                     return
                 }
-                guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-                    callback(false, nil, nil)
-                    return
-                }
-                guard let responseJSON = try? JSONDecoder().decode(WeatherResult.self, from: data) else {
-                    callback(false, nil, nil)
-                    return
-                }
-                self.getIcon(id: responseJSON.weather[0].icon) { (data) -> Void in
-                    guard let data = data else {
-                        callback(false, nil, nil)
-                        return
-                    }
-                    callback(true, responseJSON, data)
-                }
+                callback(true, responseJSON, data)
             }
         })
         task?.resume()

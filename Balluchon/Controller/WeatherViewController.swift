@@ -86,51 +86,57 @@ private extension WeatherViewController {
 // MARK: - WeatherDelegate
 extension WeatherViewController: WeatherDelegate {
     func displayResult(_ data: WeatherData) {
-        switch data.cityID {
-        case .cityIDLamentin :
-            self.firstCityName.text = data.cityName
-            self.firstCityImage.image = UIImage(data: data.cityImageData)
-            self.firstCityDescription.text = data.cityDescription
-            self.firstCityTemperature.text = data.cityTemperature
-        case .cityIDNewYork :
-            self.secondCityName.text = data.cityName
-            self.secondCityImage.image = UIImage(data: data.cityImageData)
-            self.secondCityDescription.text = data.cityDescription
-            self.secondCityTemperature.text = data.cityTemperature
+        DispatchQueue.main.async {
+            switch data.cityID {
+            case .cityIDLamentin :
+                self.firstCityName.text = data.cityName
+                self.firstCityImage.image = UIImage(data: data.cityImageData)
+                self.firstCityDescription.text = data.cityDescription
+                self.firstCityTemperature.text = data.cityTemperature
+            case .cityIDNewYork :
+                self.secondCityName.text = data.cityName
+                self.secondCityImage.image = UIImage(data: data.cityImageData)
+                self.secondCityDescription.text = data.cityDescription
+                self.secondCityTemperature.text = data.cityTemperature
+            }
         }
     }
 
     func displayError(_ text: String) {
         let alert = UIAlertController(title: "Error", message: text, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-        present(alert, animated: true, completion: nil)
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+        }
     }
 
     func displayActivity(activity: Bool, cityID: Weather.City) {
-        switch cityID {
-        case .cityIDLamentin:
-            if activity {
-                firstCityName.isHidden = true
-                firstCityTemperature.isHidden = true
-                firstCityDescription.isHidden = true
-                firstCityActivityIndicator.startAnimating()
-            } else {
-                firstCityName.isHidden = false
-                firstCityTemperature.isHidden = false
-                firstCityDescription.isHidden = false
-                firstCityActivityIndicator.stopAnimating()
-            }
-        case .cityIDNewYork:
-            if activity {
-                secondCityTemperature.isHidden = true
-                secondCityName.isHidden = true
-                secondCityDescription.isHidden = true
-                secondCityActivityIndicator.startAnimating()
-            } else {
-                secondCityTemperature.isHidden = false
-                secondCityName.isHidden = false
-                secondCityDescription.isHidden = false
-                secondCityActivityIndicator.stopAnimating()
+        DispatchQueue.main.async {
+            switch cityID {
+            case .cityIDLamentin:
+                if activity {
+                    self.firstCityName.isHidden = true
+                    self.firstCityTemperature.isHidden = true
+                    self.firstCityDescription.isHidden = true
+                    self.firstCityActivityIndicator.startAnimating()
+                } else {
+                    self.firstCityName.isHidden = false
+                    self.firstCityTemperature.isHidden = false
+                    self.firstCityDescription.isHidden = false
+                    self.firstCityActivityIndicator.stopAnimating()
+                }
+            case .cityIDNewYork:
+                if activity {
+                    self.secondCityTemperature.isHidden = true
+                    self.secondCityName.isHidden = true
+                    self.secondCityDescription.isHidden = true
+                    self.secondCityActivityIndicator.startAnimating()
+                } else {
+                    self.secondCityTemperature.isHidden = false
+                    self.secondCityName.isHidden = false
+                    self.secondCityDescription.isHidden = false
+                    self.secondCityActivityIndicator.stopAnimating()
+                }
             }
         }
     }
